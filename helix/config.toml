@@ -8,6 +8,7 @@ color-modes = true
 completion-replace = true
 completion-timeout = 50
 cursorline = true
+end-of-line-diagnostics = "hint"
 line-number = 'relative'
 shell = [
   'pwsh',
@@ -38,17 +39,18 @@ render = true
 enable = true
 # wrap-indicator = ""
 
-# [editor.inline-diagnostics]
-# cursor-line = 'warning'
-# other-lines = 'info'
-# prefix-len = 1
-# max-wrap = 20
-# max-diagnostics = 10
+[editor.inline-diagnostics]
+cursor-line     = 'warning'
+max-diagnostics = 10
+max-wrap        = 20
+other-lines     = 'info'
+prefix-len      = 1
 
 [editor.lsp]
-auto-signature-help = false
-display-inlay-hints = true
-display-messages    = true
+auto-signature-help      = false
+display-inlay-hints      = true
+display-messages         = true
+inlay-hints-length-limit = 30
 
 [editor.statusline]
 left = [
@@ -79,7 +81,6 @@ layout = [
 ]
 
 [keys.normal]
-# {{im_select.normal}}
 'A-[' = 'goto_next_buffer'
 'A-]' = 'goto_previous_buffer'
 'A-w' = ':buffer-close'
@@ -89,4 +90,3 @@ layout = [
 'A-]' = 'goto_previous_buffer'
 
 [keys.insert]
-# {{im_select.insert}}

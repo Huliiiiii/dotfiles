@@ -1,13 +1,91 @@
+[[language]]
+auto-format      = true
+formatter        = { command = "prettier", args = [ "--parser", "css" ] }
+language-servers = [ "vscode-css-language-server", "emmet-ls" ]
+name             = "css"
+
+[[language]]
+language-id      = "terraform"
+language-servers = [ "terraform-ls" ]
+name             = "hcl"
+
+[[language]]
+auto-format      = true
+formatter        = { command = "prettier", args = [ "--parser", "html" ] }
+language-servers = [ "vscode-html-language-server", "emmet-ls" ]
+name             = "html"
+
+[[language]]
+auto-format = true
+formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+]
+name = "javascript"
+
+[[language]]
+auto-format = true
+formatter   = { command = "prettier", args = [ "--parser", "json" ] }
+name        = "json"
+
+[[language]]
+auto-format = true
+formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+  "emmet-ls",
+]
+name = "jsx"
+
+[[language]]
+formatter        = { command = "dprint", args = [ "fmt", "--stdin", "md" ] }
+language-servers = [ "markdown-oxide" ]
+name             = "markdown"
+
+[[language]]
+language-servers = [ "rust-analyzer", "typos" ]
+name             = "rust"
+
+[[language]]
+language-id      = "terraform-vars"
+language-servers = [ "terraform-ls" ]
+name             = "tfvars"
+
+[[language]]
+auto-format = true
+name        = "toml"
+# formatter = { command = "taplo", args = [
+#   "fmt",
+#   "-",
+# ] }
+
+[[language]]
+auto-format = true
+formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+language-servers = [
+  "typescript-language-server",
+  # "vscode-eslint-language-server",
+  # "emmet-ls",
+  "oxc",
+]
+name = "tsx"
+
+[[language]]
+auto-format = true
+formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+  "oxc",
+]
+name = "typescript"
+
 [language-server]
-deno = { command = "deno", args = [
-  "lsp",
-] }
-emmet-ls = { command = "emmet-ls", args = [
-  "--stdio",
-] }
-terraform-ls = { command = "terraform-ls", args = [
-  "serve",
-] }
+deno         = { command = "deno", args = [ "lsp" ] }
+emmet-ls     = { command = "emmet-ls", args = [ "--stdio" ] }
+terraform-ls = { command = "terraform-ls", args = [ "serve" ] }
 
 [language-server.typos]
 # typos-lsp must be on your PATH, or otherwise change this to an absolute path to typos-lsp
@@ -28,24 +106,16 @@ config.diagnosticSeverity = "Warning"
 [language-server.rust-analyzer.config.check]
 command = "clippy"
 
-[[language]]
-language-servers = [
-  "rust-analyzer",
-  "typos",
-]
-name = "rust"
-
 [language-server.eslint.config]
-codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
-experimental = {}
-format = { enable = true }
-nodePath = ""
-problems = { shortenToSingleLine = false }
-quiet = false
-rulesCustomizations = [
-]
-run = "onType"
-validate = "on"
+codeActionsOnSave   = { mode = "all", "source.fixAll.eslint" = true }
+experimental        = {}
+format              = { enable = true }
+nodePath            = ""
+problems            = { shortenToSingleLine = false }
+quiet               = false
+rulesCustomizations = [  ]
+run                 = "onType"
+validate            = "on"
 
 [language-server.eslint.config.codeAction]
 disableRuleComment = { enable = true, location = "separateLine" }
@@ -61,89 +131,6 @@ less             = { validate = { enable = true } }
 provideFormatter = true
 scss             = { validate = { enable = true } }
 
-[[language]]
-auto-format = true
-formatter = { command = "prettier", args = [
-  "--parser",
-  "typescript",
-] }
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-]
-name = "typescript"
-
-[[language]]
-auto-format = true
-formatter = { command = "prettier", args = [
-  "--parser",
-  "typescript",
-] }
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-  "emmet-ls",
-]
-name = "tsx"
-
-[[language]]
-auto-format = true
-formatter = { command = "prettier", args = [
-  "--parser",
-  "typescript",
-] }
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-]
-name = "javascript"
-
-[[language]]
-auto-format = true
-formatter = { command = "prettier", args = [
-  "--parser",
-  "typescript",
-] }
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-  "emmet-ls",
-]
-name = "jsx"
-
-[[language]]
-auto-format = true
-formatter = { command = 'prettier', args = [
-  "--parser",
-  "html",
-] }
-language-servers = [
-  "vscode-html-language-server",
-  "emmet-ls",
-]
-name = "html"
-
-[[language]]
-auto-format = true
-formatter = { command = 'prettier', args = [
-  "--parser",
-  "css",
-] }
-language-servers = [
-  "vscode-css-language-server",
-  "emmet-ls",
-]
-name = "css"
-
-# json
-[[language]]
-auto-format = true
-formatter = { command = "prettier", args = [
-  "--parser",
-  "json",
-] }
-name = "json"
-
 # yaml
 [language-server.yaml-language-server.config.yaml]
 format     = { enable = true }
@@ -154,41 +141,8 @@ validation = true
 "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
 
 # toml
-[language-server.taplo.config]
-root_dir = [
-  "*.toml",
-  ".git",
-]
+[language-server.taplo]
+config = {}
 
-[[language]]
-auto-format = true
-formatter = { command = "taplo", args = [
-  "fmt",
-  "-",
-] }
-name = "toml"
-
-[[language]]
-language-id = "terraform"
-language-servers = [
-  "terraform-ls",
-]
-name = "hcl"
-
-[[language]]
-language-id = "terraform-vars"
-language-servers = [
-  "terraform-ls",
-]
-name = "tfvars"
-
-[[language]]
-formatter = { command = "dprint", args = [
-  "fmt",
-  "--stdin",
-  "md",
-] }
-language-servers = [
-  "markdown-oxide",
-]
-name = "markdown"
+[language-server.oxc]
+command = "oxc-language-server"

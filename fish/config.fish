@@ -27,7 +27,12 @@ end
 ## Cargo end
 
 ## Rust
-set -x RUSTC_WRAPPER $HOME/.cargo/bin/sccache
-## Rust end
+set -gx RUSTC_WRAPPER $HOME/.cargo/bin/sccache
+## Rust
+
+direnv hook fish | source
+set -x DIRENV_LOG_FORMAT ''
 
 fzf --fish | source
+
+zoxide init fish | source

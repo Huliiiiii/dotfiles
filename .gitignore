@@ -5,3 +5,5 @@ helix_linux/themes
 .dotter/cache
 .dotter/cache.toml
 .dotter/local.toml
+
+fish/conf.d/local_env.fish
