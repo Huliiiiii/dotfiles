@@ -7,3 +7,7 @@ helix_linux/themes
 .dotter/local.toml
 
 fish/conf.d/local_env.fish
+fish_variables
+fisher.fish
+pnpm.fish
+pnpm-shell-completion.fish

@@ -10,20 +10,16 @@ set -x SYSTEMD_EDITOR hx
 # Package managers
 ## Bun
 set -x BUN_INSTALL $HOME/.bun
-set -x PATH $BUN_INSTALL/bin $PATH
-## Bun end
+fish_add_path "$BUN_INSTALL/bin"
+# Bun end
 
 ## Pnpm
 set -x PNPM_HOME $HOME/.local/share/pnpm
-if not contains $PNPM_HOME $PATH
-    set -x PATH $PNPM_HOME $PATH
-end
+fish_add_path "$PNPM_HOME"
 ## Pnpm end
 
 ## Cargo
-if not contains $HOME/.cargo/bin $PATH
-    set -gx PATH $HOME/.cargo/bin $PATH
-end
+fish_add_path "$HOME/.cargo/bin"
 ## Cargo end
 
 ## Rust
