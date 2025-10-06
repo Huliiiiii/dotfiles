@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 dnf_pkgs=(
+  "git"
   "fish"
   "bat"
   "direnv"
