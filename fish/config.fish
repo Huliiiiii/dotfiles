@@ -22,10 +22,6 @@ fish_add_path "$PNPM_HOME"
 fish_add_path "$HOME/.cargo/bin"
 ## Cargo end
 
-## Rust
-set -gx RUSTC_WRAPPER $HOME/.cargo/bin/sccache
-## Rust
-
 direnv hook fish | source
 set -x DIRENV_LOG_FORMAT ''
 

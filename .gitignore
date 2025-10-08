@@ -1,6 +1,5 @@
 yazi/state
 helix/themes
-helix_linux/themes
 
 .dotter/cache
 .dotter/cache.toml
@@ -11,3 +10,6 @@ fish_variables
 fisher.fish
 pnpm.fish
 pnpm-shell-completion.fish
+
+.direnv
+.envrc
