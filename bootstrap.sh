@@ -45,6 +45,7 @@ binstall_pkgs=(
   "dotter"
   "sccache"
   "bottom"
+  "cargo-semver-checks"
 )
 
 cargo binstall ${binstall_pkgs[@]} -y
