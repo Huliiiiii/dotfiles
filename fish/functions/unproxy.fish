@@ -1,8 +1,8 @@
 function unproxy
-    set -e http_proxy
-    set -e https_proxy
-    set -e HTTP_PROXY
-    set -e HTTPS_PROXY
+    set -ge http_proxy
+    set -ge https_proxy
+    set -ge HTTP_PROXY
+    set -ge HTTPS_PROXY
 
     echo "Proxy disabled"
 end
