@@ -4,8 +4,8 @@ end
 
 set -x COLORTERM truecolor
 
-set -x EDITOR hx
-set -x SYSTEMD_EDITOR hx
+set -gx EDITOR hx
+set -gx SYSTEMD_EDITOR hx
 
 # Package managers
 ## Bun
@@ -27,4 +27,17 @@ set -x DIRENV_LOG_FORMAT ''
 
 fzf --fish | source
 
-zoxide init fish | source
+if command -q fcitx5
+    set -gx XMODIFIERS @im=fcitx
+    # set -gx GTK_IM_MODULE fcitx
+    set -gx QT_IM_MODULE fcitx
+    # set -gx GLFW_IM_MODULE ibus
+    # set -gx SDL_IM_MODULE fcitx
+    # set -gx WEBKIT_IM_MODULE fcitx
+end
+
+if command -q swww
+    . ~/.config/fish/swww.fish
+end
+
+zoxide init fish --cmd cd | source

@@ -1,3 +1,3 @@
-if command -q zoxide
-    alias cd="z"
-end
+# if command -q zoxide
+#     alias cd="z"
+# end
