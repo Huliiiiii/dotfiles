@@ -5,14 +5,19 @@ depends = [
 ]
 
 [default.files]
-fish  = { target = "~/.config/fish", type = "symbolic", recurse = false }
-gitui = "~/.config/gitui"
-helix = "~/.config/helix"
-pwsh  = ""
-yazi  = { target = "~/.config/yazi", type = "symbolic", recurse = false }
-direnv = "~/.config/direnv"
-niri = "~/.config/niri"
 bottom = "~/.config/bottom"
+direnv = "~/.config/direnv"
+fish   = { target = "~/.config/fish", type = "symbolic", recurse = false }
+gitui  = "~/.config/gitui"
+helix  = "~/.config/helix"
+pwsh   = ""
+yazi   = { target = "~/.config/yazi", type = "symbolic", recurse = false }
+
+[desktop]
+depends = [  ]
+[desktop.files]
+niri   = "~/.config/niri"
+waybar = "~/.config/waybar"
 
 [settings]
 default_target_type = "automatic"
