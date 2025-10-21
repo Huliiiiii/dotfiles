@@ -38,7 +38,10 @@ cargo_pkgs=(
   "sea-orm-cli"
 )
 
-cargo install ${cargo_pkgs[@]} 
+env RUSTFALGS="$RUSTFALGS -Ctarget-cpu=native"
+
+cargo install ${cargo_pkgs[@]}
+cargo install taplo-cli --features lsp
 
 binstall_pkgs=(
   "wild-linker"
@@ -73,4 +76,3 @@ sudo systemctl start postgresql-18
 if ! uv -V &> /dev/null; then
 curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
-
