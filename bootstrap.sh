@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 dnf_pkgs=(
+  "du-dust"
   "git"
   "fish"
   "bat"
@@ -50,7 +51,7 @@ binstall_pkgs=(
 
 cargo binstall ${binstall_pkgs[@]} -y
 
-if !corepack -v &> /dev/null; then
+if ! corepack -v &> /dev/null; then
 sudo npm install -g corepack
 corepack enable pnpm
 fi
@@ -69,4 +70,7 @@ sudo systemctl enable postgresql-18
 sudo systemctl start postgresql-18
 
 # uv
+if ! uv -V &> /dev/null; then
 curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
+
