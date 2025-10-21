@@ -11,6 +11,8 @@ helix = "~/.config/helix"
 pwsh  = ""
 yazi  = { target = "~/.config/yazi", type = "symbolic", recurse = false }
 direnv = "~/.config/direnv"
+niri = "~/.config/niri"
+bottom = "~/.config/bottom"
 
 [settings]
 default_target_type = "automatic"
