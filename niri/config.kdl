@@ -217,13 +217,13 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-        // active-gradient from="#80c8ff" to="#bbddff" angle=45
+        active-gradient from="#80c8ff" to="#bbddff" angle=45
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
         // To do that, set relative-to="workspace-view".
         //
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
@@ -239,8 +239,8 @@ layout {
         // Color of the border around windows that request your attention.
         urgent-color "#9b0000"
 
-        // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
+        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
     // You can enable drop shadows for windows.
@@ -365,15 +365,21 @@ window-rule {
 }
 
 window-rule {
+    match app-id="steam" title=r#"在玩"#
+    open-floating true
+    default-floating-position x=0 y=0 relative-to="bottom-right"
+}
+
+window-rule {
     match app-id="google-chrome" is-focused=false is-active-in-column=false
     open-floating true
 }
 
 window-rule {
     match app-id="^dev.zed"
-    default-column-width {
-        proportion 0.66667;
-    }
+    // default-column-width {
+    //     proportion 0.66667;
+    // }
 }
 
 // window-rule {
@@ -653,5 +659,3 @@ binds {
         spawn "systemctl" "poweroff"
     }
 }
-
-
