@@ -12,6 +12,8 @@ gitui  = "~/.config/gitui"
 helix  = "~/.config/helix"
 pwsh   = ""
 yazi   = { target = "~/.config/yazi", type = "symbolic", recurse = false }
+guix   = { target = "~/.config/guix", type = "symbolic", recurse = false }
+
 
 [desktop]
 depends = [  ]

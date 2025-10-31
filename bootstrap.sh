@@ -17,6 +17,7 @@ dnf_pkgs=(
   "npm"
   "clang"
   "dnf5-plugins"
+  "yazi"
 )
 
 sudo dnf install ${dnf_pkgs[@]} -y

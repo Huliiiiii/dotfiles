@@ -11,11 +11,12 @@ environment {
     XIM "fcitx"
 	QT_QPA_PLATFORM "wayland"
 	QT_QPA_PLATFORMTHEME "kde"
+	QT_QPA_PLATFORMTHEME_QT6 "kde"
 	QT_IM_MODULE "fcitx"
 	GTK_IM_MODULE "fcitx"
     XMODIFIERS "@im=fcitx"
 	GLFW_IM_MODULE "fcitx"
-	XDG_MENU_PREFIX "plasma-"
+	// XDG_MENU_PREFIX "plasma-"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
@@ -24,13 +25,27 @@ hotkey-overlay {
     skip-at-startup
 }
 
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+// Required for clipboard history integration
+spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
+
+spawn-at-startup "lxpolkit"
+// Starts DankShell
+spawn-at-startup "dms" "run"
+
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "sparkle"
-spawn-at-startup "lxpolkit"
 spawn-at-startup "google-chrome"
-spawn-at-startup "wechat"
-spawn-at-startup "qq"
+spawn-at-startup "gtk-launch" "wechat"
+spawn-at-startup "gtk-launch" "qq"
 spawn-at-startup "cherrystudio"
+
+config-notification {
+    disable-failed
+}
 
 input {
     keyboard {
@@ -68,7 +83,7 @@ input {
         // natural-scroll
         accel-speed -0.6
         accel-profile "flat"
-        scroll-factor 1.0
+        // scroll-factor 1.0
         // scroll-method "no-scroll"
         // 
     }
@@ -143,6 +158,7 @@ output "DP-1" {
 }
 
 output "HDMI-A-1" {
+    scale 1.0
     // mode "1920x790@60"
 
     
@@ -154,15 +170,15 @@ output "HDMI-A-1" {
     //     proportion 1.0
     // }
     // off
-    // layout {
+    layout {
         
-    //     struts {
-    //         // left 64
-    //         // right 64
-    //         // top 64
-    //         bottom 64
-    //     }
-    // }
+        struts {
+            // left 64
+            // right 64
+            // top 64
+             bottom 256
+        }
+    }
 }
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
@@ -324,6 +340,7 @@ layout {
 
 layer-rule {
     match namespace="^wallpaper$"
+    match namespace="^quickshell$"
     place-within-backdrop true
 }
 
@@ -339,7 +356,7 @@ overview {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
+// spawn-at-startup "waybar"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -351,7 +368,7 @@ spawn-at-startup "waybar"
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
 // The path is formatted with strftime(3) to give you the screenshot date and time.
-screenshot-path "~/picture/screenshot/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Pictures/screenshot/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // You can also set this to null to disable saving screenshots to disk.
 // screenshot-path null
@@ -382,37 +399,26 @@ window-rule {
 }
 
 window-rule {
-    match app-id="QQ" title="图片查看器"
+    match app-id="steam" title=r#"^notificationtoasts"#
     open-floating true
-}
-
-window-rule {
-    match app-id="wechat" title="wechat|预览"
-    open-floating true
-}
-
-window-rule {
-    match app-id="steam" title=r#"在玩"#
-    open-floating true
-    default-floating-position x=0 y=0 relative-to="bottom-right"
+    open-focused false
+    default-floating-position x=-80 y=0 relative-to="top-right"
 }
 
 window-rule {
     match app-id="google-chrome" is-focused=false is-active-in-column=false
+    match app-id="google-chrome" is-urgent=true
+    match app-id="^chrome"
+
+    match app-id="QQ" title="图片查看器"
+    match app-id="QQ" is-urgent=true
+
+    match app-id="wechat" title="wechat|预览"
+    match app-id="wechat" is-urgent=true
+
     open-floating true
-}
 
-window-rule {
-    match app-id="^dev.zed"
-    // default-column-width {
-    //     proportion 0.66667;
-    // }
 }
-
-// window-rule {
-//     match app-id="dev.zed.Zed-Nightly"
-//     default-column-width {}
-// }
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
@@ -442,9 +448,34 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
+    Mod+N hotkey-overlay-title="Notification Center" {
+      spawn "dms" "ipc" "call" "notifications" "toggle";
+    }
+    Mod+R hotkey-overlay-title="Run an Application" {
+        // spawn "dms" "ipc" "call" "spotlight" "toggle";
+        spawn "fuzzel";
+        // spawn "rofi";
+    }
     Mod+T hotkey-overlay-title="Open the Terminal: ghostty" { spawn "ghostty"; }
-    Mod+R hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+V hotkey-overlay-title="Clipboard Manager" {
+        spawn "dms" "ipc" "call" "clipboard" "toggle";
+    }
+    Mod+O hotkey-overlay-title="Settings" {
+        spawn "dms" "ipc" "call" "settings" "toggle";
+    }
+    Mod+P hotkey-overlay-title="Notepad" {
+        spawn "dms" "ipc" "call" "notepad" "toggle";
+    }
+    Ctrl+Alt+Delete hotkey-overlay-title="Power Menu" {
+        spawn "dms" "ipc" "call" "powermenu" "toggle";
+    }
+    Mod+D hotkey-overlay-title="Control Center" {
+       spawn "dms" "ipc" "call" "control-center" "toggle";
+    }
+    Super+Alt+L hotkey-overlay-title="Lock Screen" {
+        spawn "dms" "ipc" "call" "lock" "lock";
+    }
+    // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -618,7 +649,7 @@ binds {
     Mod+Shift+S { switch-preset-window-height; }
     Mod+Ctrl+S { reset-window-height; }
     Mod+M { maximize-column; }
-    Mod+Shift+M { fullscreen-window; }
+    Mod+Ctrl+M { fullscreen-window; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
@@ -676,8 +707,8 @@ binds {
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
-    Mod+Shift+E { quit; }
-    Ctrl+Alt+Delete { quit; }
+    // Mod+Shift+E { quit; }
+    // Ctrl+Alt+Delete { quit; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
@@ -685,6 +716,33 @@ binds {
     Mod+Ctrl+Alt+Shift+Delete hotkey-overlay-title="关机" {
         spawn "systemctl" "poweroff"
     }
+
+    // XF86AudioRaiseVolume allow-when-locked=true {
+    //   spawn "dms" "ipc" "call" "audio" "increment" "3";
+    // }
+    // XF86AudioLowerVolume allow-when-locked=true {
+    //    spawn "dms" "ipc" "call" "audio" "decrement" "3";
+    // }
+}
+
+
+// TODO: Comment
+window-rule {
+    match at-startup=true
+    open-focused false
+}
+
+workspace "" {
+    open-on-output "DP-1"
+}
+
+workspace "cherry" {
+    open-on-output "DP-1"
+}
+
+window-rule {
+    match at-startup=true app-id="CherryStudio"
+    open-on-workspace "cherry"
 }
 
 // Chat
@@ -693,6 +751,18 @@ workspace "chat" {
 }
 
 window-rule {
-    match at-startup=true app-id="wechat|QQ"
+    match at-startup=true app-id="wechat"
+    match at-startup=true app-id="QQ"
     open-on-workspace "chat"
 }
+
+workspace "steam" {
+    open-on-output "DP-1"
+}
+
+window-rule {
+    match at-startup=true app-id="steam"
+    open-on-workspace "steam"
+}
+
+include "dms/colors.kdl"
