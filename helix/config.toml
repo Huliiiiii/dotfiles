@@ -4,16 +4,17 @@ theme = 'catppuccin_macchiato'
 auto-format = true
 auto-save = true
 bufferline = 'multiple'
+# clipboard-provider = "termcode"
 color-modes = true
 completion-replace = true
 completion-timeout = 50
 cursorline = true
 end-of-line-diagnostics = "hint"
 line-number = 'relative'
-shell = [
-  'pwsh',
-  '-Command',
-]
+# shell = [
+#   'pwsh',
+#   '-Command',
+# ]
 true-color = true
 
 [editor.cursor-shape]
@@ -43,7 +44,6 @@ enable = true
 cursor-line     = 'warning'
 max-diagnostics = 10
 max-wrap        = 20
-other-lines     = 'info'
 prefix-len      = 1
 
 [editor.lsp]
@@ -81,14 +81,14 @@ layout = [
 ]
 
 [keys.normal]
-'A-[' = 'goto_next_buffer'
-'A-]' = 'goto_previous_buffer'
+'A-]' = 'goto_next_buffer'
+'A-[' = 'goto_previous_buffer'
 'A-w' = ':buffer-close'
 # 'X' = 'extend_line_above'
 
 [keys.select]
-'A-[' = 'goto_next_buffer'
-'A-]' = 'goto_previous_buffer'
+'A-]' = 'goto_next_buffer'
+'A-[' = 'goto_previous_buffer'
 # 'X' = 'extend_line_above'
 
 [keys.insert]
