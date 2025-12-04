@@ -1,0 +1,10 @@
+layout {
+    tab-indicator {
+        width 8
+        gap 8
+        // length total-proportion=1.0
+        position "left"
+        corner-radius 4
+        place-within-column
+    }
+}

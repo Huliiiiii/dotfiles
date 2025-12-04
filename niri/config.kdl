@@ -7,19 +7,6 @@
 // Find the full list of options on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
 
-environment {
-    XIM "fcitx"
-	QT_QPA_PLATFORM "wayland"
-	QT_QPA_PLATFORMTHEME "kde"
-	QT_QPA_PLATFORMTHEME_QT6 "kde"
-	QT_IM_MODULE "fcitx"
-	GTK_IM_MODULE "fcitx"
-    XMODIFIERS "@im=fcitx"
-	GLFW_IM_MODULE "fcitx"
-	// XDG_MENU_PREFIX "plasma-"
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-}
-
 prefer-no-csd
 hotkey-overlay {
     skip-at-startup
@@ -29,82 +16,12 @@ debug {
     honor-xdg-activation-with-invalid-serial
 }
 
-// Required for clipboard history integration
-spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
-
-spawn-at-startup "lxpolkit"
-// Starts DankShell
-spawn-at-startup "dms" "run"
-
-spawn-at-startup "fcitx5" "-d"
-spawn-at-startup "sparkle"
-spawn-at-startup "google-chrome"
-spawn-at-startup "gtk-launch" "wechat"
-spawn-at-startup "gtk-launch" "qq"
-spawn-at-startup "cherrystudio"
-
 config-notification {
     disable-failed
 }
 
-input {
-    keyboard {
-        xkb {
-            // You can set rules, model, layout, variant and options.
-            // For more information, see xkeyboard-config(7).
-
-            // For example:
-            // layout "us,ru"
-            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
-        }
-
-        // Enable numlock on startup, omitting this setting disables it.
-        numlock
-    }
-
-    // Next sections include libinput settings.
-    // Omitting settings disables them, or leaves them at their default values.
-    touchpad {
-        // off
-        tap
-        // dwt
-        // dwtp
-        // drag false
-        // drag-lock
-        natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "two-finger"
-        // disabled-on-external-mouse
-    }
-
-    mouse {
-        // off
-        // natural-scroll
-        accel-speed -0.6
-        accel-profile "flat"
-        // scroll-factor 1.0
-        // scroll-method "no-scroll"
-        // 
-    }
-
-    trackpoint {
-        // off
-        // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "on-button-down"
-        // scroll-button 273
-        // middle-emulation
-    }
-
-    // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
-
-    // Focus windows and outputs automatically when moving the mouse into them.
-    // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
-}
+include "env.kdl"
+include "spawn.kdl"
 
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
@@ -168,7 +85,7 @@ output "HDMI-A-1" {
 }
 
 output "cPATH 0x37D5 Unknown" {
-    scale 1.33
+    scale 1.333
 
     layout {
         gaps 6
@@ -406,10 +323,10 @@ window-rule {
 }
 
 // TODO: Comment
-window-rule {
-    match at-startup=true
-    open-focused false
-}
+// window-rule {
+//     match at-startup=true
+//     open-focused false
+// }
 
 workspace "" {
     open-on-output "DP-1"
@@ -445,7 +362,9 @@ window-rule {
 }
 
 include "layout.kdl"
-include "color.kdl"
+include "recent-windows.kdl"
 include "binds.kdl"
+include "color.kdl"
+include "input.kdl"
 
 
