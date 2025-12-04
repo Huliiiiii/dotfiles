@@ -20,6 +20,10 @@ config-notification {
     disable-failed
 }
 
+clipboard {
+    disable-primary
+}
+
 include "env.kdl"
 include "spawn.kdl"
 
