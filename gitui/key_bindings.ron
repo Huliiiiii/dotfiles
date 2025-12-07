@@ -1,5 +1,5 @@
 (
-    // quit: Some(( code: Char('q'), modifiers: "CONTROL")),
+    quit: Some(( code: Char('q'), modifiers: "CONTROL")),
     
     open_help: Some(( code: F(1), modifiers: "")),
 
@@ -22,7 +22,7 @@
     // page_down: Some(( code: Char('f'), modifiers: "CONTROL")),
     // exit_popup: Some(( code: Char('q'), modifiers: "")),
     
-    edit_file: Some(( code: Char('w'), modifiers: "CONTROL")),
+    edit_file: Some(( code: Char('e'), modifiers: "CONTROL")),
         
     stage_unstage_item: Some(( code: Char('a'), modifiers: "")),
     status_stage_all: Some(( code: Char('A'), modifiers: "SHIFT")),
