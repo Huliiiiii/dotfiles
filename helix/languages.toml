@@ -1,4 +1,3 @@
-
 [[language]]
 auto-format      = true
 formatter        = { command = "prettier", args = [ "--parser", "css" ] }
@@ -17,13 +16,10 @@ language-servers = [ "vscode-html-language-server", "emmet-ls" ]
 name             = "html"
 
 [[language]]
-auto-format = true
-formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-]
-name = "javascript"
+auto-format      = true
+formatter        = { command = "prettier", args = [ "--parser", "typescript" ] }
+language-servers = [ "typescript-language-server" ]
+name             = "javascript"
 
 [[language]]
 auto-format = true
@@ -31,19 +27,15 @@ formatter   = { command = "prettier", args = [ "--parser", "json" ] }
 name        = "json"
 
 [[language]]
-auto-format = true
-formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-  "emmet-ls",
-]
-name = "jsx"
+auto-format      = true
+formatter        = { command = "prettier", args = [ "--parser", "typescript" ] }
+language-servers = [ "typescript-language-server", "emmet-ls" ]
+name             = "jsx"
 
 [[language]]
-formatter        = { command = "dprint", args = [ "fmt", "--stdin", "md" ] }
-language-servers = [ "markdown-oxide" ]
-name             = "markdown"
+# formatter        = { command = "dprint", args = [ "fmt", "--stdin", "md" ] }
+# language-servers = [ "markdown-oxide" ]
+name = "markdown"
 
 [[language]]
 language-servers = [ "rust-analyzer", "typos" ]
@@ -56,32 +48,25 @@ name             = "tfvars"
 
 [[language]]
 auto-format = true
+formatter = { command = "tombi", args = [ "format" ] }
+language-servers = [ "tombi" ]
 name        = "toml"
-# formatter = { command = "taplo", args = [
-#   "fmt",
-#   "-",
-# ] }
 
 [[language]]
 auto-format = true
 formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
 language-servers = [
   "typescript-language-server",
-  # "vscode-eslint-language-server",
   # "emmet-ls",
   "oxc",
 ]
 name = "tsx"
 
 [[language]]
-auto-format = true
-formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-  "oxc",
-]
-name = "typescript"
+auto-format      = true
+formatter        = { command = "prettier", args = [ "--parser", "typescript" ] }
+language-servers = [ "typescript-language-server", "oxc" ]
+name             = "typescript"
 
 [language-server]
 deno         = { command = "deno", args = [ "lsp" ] }
@@ -105,29 +90,20 @@ config.diagnosticSeverity = "Warning"
 [language-server.rust-analyzer]
 
 [language-server.rust-analyzer.config.check]
-workspace = false
+# workspace = false
 command = "clippy"
 
-[language-server.eslint.config]
-codeActionsOnSave   = { mode = "all", "source.fixAll.eslint" = true }
-experimental        = {}
-format              = { enable = true }
-nodePath            = ""
-problems            = { shortenToSingleLine = false }
-quiet               = false
-rulesCustomizations = [  ]
-run                 = "onType"
-validate            = "on"
-
-[language-server.eslint.config.codeAction]
-disableRuleComment = { enable = true, location = "separateLine" }
-showDocumentation  = { enable = false }
+[language-server.tombi]
+command = "tombi"
+args = [ "lsp" ]
+provideFormatter = true
 
 [language-server.vscode-json-language-server.config]
 json             = { validate = { enable = true }, format = { enable = true } }
 provideFormatter = true
 
 [language-server.vscode-css-language-server.config]
+
 css              = { validate = { enable = true } }
 less             = { validate = { enable = true } }
 provideFormatter = true
@@ -141,10 +117,6 @@ validation = true
 [language-server.yaml-language-server.config.yaml.schemas]
 "https://json.schemastore.org/github-workflow.json"                                     = ".github/workflows/*.{yml,yaml}"
 "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
-
-# toml
-[language-server.taplo]
-config = {}
 
 [language-server.oxc]
 command = "oxc-language-server"
