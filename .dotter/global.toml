@@ -18,6 +18,7 @@ yazi   = { target = "~/.config/yazi", type = "symbolic", recurse = false }
 depends = [  ]
 [desktop.files]
 niri   = "~/.config/niri"
+ghostty = "~/.config/ghostty"
 
 [settings]
 default_target_type = "automatic"

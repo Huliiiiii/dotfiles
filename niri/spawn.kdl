@@ -10,5 +10,5 @@ spawn-at-startup "sparkle"
 spawn-at-startup "google-chrome"
 spawn-at-startup "gtk-launch" "wechat"
 spawn-at-startup "gtk-launch" "qq"
-spawn-at-startup "'Cherry Studio'"
+spawn-at-startup "Cherry Studio"
 

@@ -41,7 +41,7 @@ enable = true
 # wrap-indicator = ""
 
 [editor.inline-diagnostics]
-cursor-line     = 'warning'
+cursor-line     = 'info'
 max-diagnostics = 10
 max-wrap        = 20
 prefix-len      = 1

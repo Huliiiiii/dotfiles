@@ -13,6 +13,7 @@ hotkey-overlay {
 }
 
 debug {
+    deactivate-unfocused-windows
     honor-xdg-activation-with-invalid-serial
 }
 
@@ -26,43 +27,6 @@ clipboard {
 
 include "env.kdl"
 include "spawn.kdl"
-
-// You can configure outputs by their name, which you can find
-// by running `niri msg outputs` while inside a niri instance.
-// The built-in laptop monitor is usually called "eDP-1".
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
-// Remember to uncomment the node by removing "/-"!
-/-output "eDP-1" {
-    // Uncomment this line to disable this output.
-    // off
-
-    // Resolution and, optionally, refresh rate of the output.
-    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
-    // If the refresh rate is omitted, niri will pick the highest refresh rate
-    // for the resolution.
-    // If the mode is omitted altogether or is invalid, niri will pick one automatically.
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@60"
-
-    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 2
-
-    // Transform allows to rotate the output counter-clockwise, valid values are:
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
-    transform "normal"
-
-    // Position of the output in the global coordinate space.
-    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
-    // The cursor can only move between directly adjacent outputs.
-    // Output scale and rotation has to be taken into account for positioning:
-    // outputs are sized in logical, or scaled, pixels.
-    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
-    // so to put another output directly adjacent to it on the right, set its x to 1920.
-    // If the position is unset or results in an overlap, the output is instead placed
-    // automatically.
-    position x=1280 y=0
-}
 
 output "DP-1" {
     // mode "1920x790@60"
@@ -160,9 +124,6 @@ layout {
         // off
 
         width 2
-        active-color   "#a4c9ff"
-        inactive-color "#919191"
-        urgent-color   "#ffb4ab"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
@@ -172,14 +133,8 @@ layout {
         off
 
         width 2
-        active-color "#ffc87f"
-        inactive-color "#505050"
-
-        // Color of the border around windows that request your attention.
-        urgent-color "#9b0000"
-
-        active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
-        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
     // You can enable drop shadows for windows.
@@ -275,7 +230,7 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
+    // slowdown 0.9
 }
 
 window-rule {
@@ -327,10 +282,10 @@ window-rule {
 }
 
 // TODO: Comment
-// window-rule {
-//     match at-startup=true
-//     open-focused false
-// }
+window-rule {
+    match at-startup=true
+    open-focused false
+}
 
 workspace "" {
     open-on-output "DP-1"
@@ -371,4 +326,8 @@ include "binds.kdl"
 include "color.kdl"
 include "input.kdl"
 
-
+gestures {
+    hot-corners {
+        off
+    }
+}
