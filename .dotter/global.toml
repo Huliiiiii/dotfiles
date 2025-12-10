@@ -19,6 +19,7 @@ depends = [  ]
 [desktop.files]
 niri   = "~/.config/niri"
 ghostty = "~/.config/ghostty"
+fuzzel = "~/.config/fuzzel"
 
 [settings]
 default_target_type = "automatic"
