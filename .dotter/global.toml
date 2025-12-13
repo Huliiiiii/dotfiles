@@ -10,9 +10,8 @@ direnv = "~/.config/direnv"
 fish   = { target = "~/.config/fish", type = "symbolic", recurse = false }
 gitui  = "~/.config/gitui"
 helix  = "~/.config/helix"
-yazi   = { target = "~/.config/yazi", type = "symbolic", recurse = false }
+yazi   = "~/.config/yazi"
 # guix   = { target = "~/.config/guix", type = "symbolic", recurse = false }
-
 
 [desktop]
 depends = [  ]

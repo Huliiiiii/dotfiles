@@ -23,6 +23,8 @@ select = 'underline'
 
 [editor.file-picker]
 hidden = false
+follow-symlinks=true
+deduplicate-links=false
 
 [editor.whitespace.render]
 # space = "all"
