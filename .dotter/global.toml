@@ -14,6 +14,7 @@ yazi   = "~/.config/yazi"
 home = "~"
 '.config' = { target = "~/.config", type = "symbolic" }
 # guix   = { target = "~/.config/guix", type = "symbolic", recurse = false }
+'scripts' = "~/scripts"
 
 [desktop]
 depends = [  ]
