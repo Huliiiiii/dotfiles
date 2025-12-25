@@ -1,8 +1,8 @@
 [[language]]
+name             = "css"
 auto-format      = true
 formatter        = { command = "prettier", args = [ "--parser", "css" ] }
 language-servers = [ "vscode-css-language-server", "emmet-ls" ]
-name             = "css"
 
 [[language]]
 language-id      = "terraform"
@@ -22,9 +22,9 @@ language-servers = [ "typescript-language-server" ]
 name             = "javascript"
 
 [[language]]
+name        = "json"
 auto-format = true
 formatter   = { command = "prettier", args = [ "--parser", "json" ] }
-name        = "json"
 
 [[language]]
 auto-format      = true
@@ -38,8 +38,8 @@ name             = "jsx"
 name = "markdown"
 
 [[language]]
-language-servers = [ "rust-analyzer", "typos" ]
 name             = "rust"
+language-servers = [ "rust-analyzer", "typos" ]
 
 [[language]]
 language-id      = "terraform-vars"
@@ -47,10 +47,8 @@ language-servers = [ "terraform-ls" ]
 name             = "tfvars"
 
 [[language]]
-auto-format = true
-formatter = { command = "tombi", args = [ "format" ] }
-language-servers = [ "tombi" ]
 name        = "toml"
+auto-format = false
 
 [[language]]
 auto-format = true
@@ -87,10 +85,8 @@ config.config = "~/code/typos-lsp/crates/typos-lsp/tests/typos.toml"
 config.diagnosticSeverity = "Warning"
 
 # rust
-[language-server.rust-analyzer]
-
 [language-server.rust-analyzer.config.check]
-# workspace = false
+workspace = false
 command = "clippy"
 
 [language-server.tombi]
@@ -103,7 +99,6 @@ json             = { validate = { enable = true }, format = { enable = true } }
 provideFormatter = true
 
 [language-server.vscode-css-language-server.config]
-
 css              = { validate = { enable = true } }
 less             = { validate = { enable = true } }
 provideFormatter = true
@@ -119,4 +114,4 @@ validation = true
 "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
 
 [language-server.oxc]
-command = "oxc-language-server"
+command = "oxc_language_server"
