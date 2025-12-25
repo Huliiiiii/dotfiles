@@ -1,0 +1,35 @@
+promptToReturnFromSubprocess: false
+os:
+  copyToClipboardCmd: printf "\033]52;c;$(printf {{text}} | base64 -w 0)\a" > /dev/tty
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never 
+    - externalDiffCommand: difft --color=always
+gui:
+  border: rounded
+  filterMode: fuzzy
+  nerdFontsVersion: "3"
+  # mainPanelSplitMode: "vertical"
+  theme:
+    activeBorderColor:
+      - '#e78284'
+      - bold
+    inactiveBorderColor:
+      - '#a5adce'
+    optionsTextColor:
+      - '#8caaee'
+    selectedLineBgColor:
+      - '#414559'
+    cherryPickedCommitBgColor:
+      - '#51576d'
+    cherryPickedCommitFgColor:
+      - '#e78284'
+    unstagedChangesColor:
+      - '#e78284'
+    defaultFgColor:
+      - '#c6d0f5'
+    searchingActiveBorderColor:
+      - '#e5c890'
+  authorColors:
+    '*': '#babbf1'
