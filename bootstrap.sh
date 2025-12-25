@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 dnf_coprs=(
-  dejan/lazygit
-  lihaohong/yazi 
+  "dejan/lazygit"
+  "lihaohong/yazi" 
 )
 dnf_pkgs=(
+  difftastic
   "nodejs"
   "du-dust"
   "git"
