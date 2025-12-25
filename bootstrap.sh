@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+dnf_coprs=(
+  dejan/lazygit
+  lihaohong/yazi 
+)
 dnf_pkgs=(
   "nodejs"
   "du-dust"
@@ -20,10 +24,11 @@ dnf_pkgs=(
   "dnf5-plugins"
   "yazi"
   "ghostty"
+  lazygit
 )
 
 sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release -y
-sudo dnf copr enable lihaohong/yazi -y
+sudo dnf copr enable ${dnf_coprs[@]} -y
 sudo dnf install ${dnf_pkgs[@]} -y --skip-unavailable
 
 sudo dnf config-manager addrepo --from-repofile=https://cli.github.com/packages/rpm/gh-cli.repo
@@ -69,6 +74,7 @@ pnpm setup
 fi
 
 pnpm_pkgs=(
+  "fish-lsp"
   "@openai/codex"
 )
 
