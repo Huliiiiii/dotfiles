@@ -11,6 +11,8 @@ fish   = { target = "~/.config/fish", type = "symbolic", recurse = false }
 gitui  = "~/.config/gitui"
 helix  = "~/.config/helix"
 yazi   = "~/.config/yazi"
+home = "~"
+'.config' = { target = "~/.config", type = "symbolic" }
 # guix   = { target = "~/.config/guix", type = "symbolic", recurse = false }
 
 [desktop]

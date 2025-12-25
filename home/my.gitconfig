@@ -1,0 +1,23 @@
+[user]
+	email = 134658521+Huliiiiii@users.noreply.github.com
+	name = Huliiiiii
+[rebase]
+	autoStash = true
+[rerere]
+	enabled = true
+[core]
+	editor = hx
+	logallrefupdates = true
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true
+[merge]
+	autoStash = true
+[diff]
+	algorithm = histogram
+	external = difft
+[include]
+	path = ~/.config/delta/catppuccin.gitconfig
+[delta]
+	features = catppuccin-mocha
