@@ -1,31 +1,31 @@
 #!/usr/bin/env bash
 dnf_coprs=(
-  "dejan/lazygit"
-  "lihaohong/yazi" 
+  dejan/lazygit
+  lihaohong/yazi 
 )
 dnf_pkgs=(
+  bat
+  clang
   difftastic
-  "nodejs"
-  "du-dust"
-  "git"
-  "fish"
-  "bat"
-  "direnv"
-  "fd"
-  "fzf"
-  "gitui"
-  "helix"
-  "jq"
-  "ripgrep"
-  "tokei"
-  "zoxide"
-  "openssl-devel"
-  "npm"
-  "clang"
-  "dnf5-plugins"
-  "yazi"
-  "ghostty"
+  direnv
+  dnf5-plugins
+  du-dust
+  fd
+  fish
+  fzf
+  ghostty
+  git
+  gitui
+  helix
+  jq
   lazygit
+  nodejs
+  npm
+  openssl-devel
+  ripgrep
+  tokei
+  yazi
+  zoxide
 )
 
 sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release -y
@@ -57,12 +57,13 @@ env RUSTFALGS="$RUSTFALGS -Ctarget-cpu=native"
 # cargo install taplo-cli --features lsp
 
 binstall_pkgs=(
-  "wild-linker"
-  "cargo-expand"
-  "dotter"
-  "sccache"
-  "bottom"
-  "cargo-semver-checks"
+  bottom
+  cargo-expand
+  cargo-semver-checks
+  dotter
+  mergiraf
+  sccache
+  wild-linker
 )
 
 cargo binstall ${binstall_pkgs[@]} -y
