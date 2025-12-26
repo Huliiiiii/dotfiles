@@ -57,6 +57,7 @@ env RUSTFALGS="$RUSTFALGS -Ctarget-cpu=native"
 # cargo install taplo-cli --features lsp
 
 binstall_pkgs=(
+  cargo-update
   bottom
   cargo-expand
   cargo-semver-checks
