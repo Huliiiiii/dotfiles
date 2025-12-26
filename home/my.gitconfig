@@ -14,6 +14,7 @@
 	rebase = true
 [merge]
 	autoStash = true
+	conflictStyle = "diff3"
 [diff]
 	algorithm = histogram
 	external = difft
@@ -21,3 +22,6 @@
 	path = ~/.config/delta/catppuccin.gitconfig
 [delta]
 	features = catppuccin-mocha
+[merge "mergiraf"]
+    name = mergiraf
+    driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
