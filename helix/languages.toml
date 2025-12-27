@@ -5,21 +5,21 @@ formatter        = { command = "prettier", args = [ "--parser", "css" ] }
 language-servers = [ "vscode-css-language-server", "emmet-ls" ]
 
 [[language]]
+name             = "hcl"
 language-id      = "terraform"
 language-servers = [ "terraform-ls" ]
-name             = "hcl"
 
 [[language]]
+name             = "html"
 auto-format      = true
 formatter        = { command = "prettier", args = [ "--parser", "html" ] }
 language-servers = [ "vscode-html-language-server", "emmet-ls" ]
-name             = "html"
 
 [[language]]
+name             = "javascript"
 auto-format      = true
 formatter        = { command = "prettier", args = [ "--parser", "typescript" ] }
-language-servers = [ "typescript-language-server" ]
-name             = "javascript"
+language-servers = [ "vtsls" ]
 
 [[language]]
 name        = "json"
@@ -27,44 +27,44 @@ auto-format = true
 formatter   = { command = "prettier", args = [ "--parser", "json" ] }
 
 [[language]]
+name             = "jsx"
 auto-format      = true
 formatter        = { command = "prettier", args = [ "--parser", "typescript" ] }
-language-servers = [ "typescript-language-server", "emmet-ls" ]
-name             = "jsx"
+language-servers = [ "vtsls", "emmet-ls" ]
 
 [[language]]
+name = "markdown"
 # formatter        = { command = "dprint", args = [ "fmt", "--stdin", "md" ] }
 # language-servers = [ "markdown-oxide" ]
-name = "markdown"
 
 [[language]]
 name             = "rust"
 language-servers = [ "rust-analyzer", "typos" ]
 
 [[language]]
+name             = "tfvars"
 language-id      = "terraform-vars"
 language-servers = [ "terraform-ls" ]
-name             = "tfvars"
 
 [[language]]
 name        = "toml"
 auto-format = false
 
 [[language]]
+name = "tsx"
 auto-format = true
 formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
 language-servers = [
-  "typescript-language-server",
-  # "emmet-ls",
-  "oxc",
+  "vtsls",
+  "emmet-ls",
+  "oxlint-language-server",
 ]
-name = "tsx"
 
 [[language]]
+name             = "typescript"
 auto-format      = true
 formatter        = { command = "prettier", args = [ "--parser", "typescript" ] }
-language-servers = [ "typescript-language-server", "oxc" ]
-name             = "typescript"
+language-servers = [ "vtsls", "oxlint-language-server" ]
 
 [language-server]
 deno         = { command = "deno", args = [ "lsp" ] }
@@ -113,5 +113,26 @@ validation = true
 "https://json.schemastore.org/github-workflow.json"                                     = ".github/workflows/*.{yml,yaml}"
 "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
 
-[language-server.oxc]
-command = "oxc_language_server"
+[language-server.oxlint-language-server]
+command = "oxlint"
+args = ["--lsp"]
+
+[language-server.vtsls]
+command = "vtsls"
+args = ["--stdio"]
+config.hostInfo = "helix"
+
+[language-server.vtsls.config.typescript]
+format.enable = false
+inlayHints.enumMemberValues.enabled = true
+inlayHints.functionLikeReturnTypes = true
+inlayHints.parameterNames.enabled = "all"
+inlayHints.parameterTypes.enabled = true
+inlayHints.propertyDeclarationTypes.enabled = true
+inlayHints.variableTypes.enabled = true
+preferences.importModuleSpecifier = "non-relative"
+preferences.importModuleSpecifierEnding = "auto"
+suggest.completeFunctionCalls = true
+tsserver.enableTracing = true
+tsserver.pluginPaths = ["typescript-plugin-css-modules", "./node_modules"]
+updateImportsOnFileMove.enabled = "always"
