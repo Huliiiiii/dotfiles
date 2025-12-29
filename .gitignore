@@ -1,15 +1,19 @@
-yazi/state
-helix/themes
+.direnv
 
 .dotter/cache
 .dotter/cache.toml
 .dotter/local.toml
 
+.envrc
+
 fish/conf.d/local_env.fish
 fish_variables
 fisher.fish
-pnpm.fish
-pnpm-shell-completion.fish
 
-.direnv
-.envrc
+helix/themes
+
+pnpm-shell-completion.fish
+pnpm.fish
+
+yazi/state
+yazi/vfs.toml
