@@ -1,0 +1,4 @@
+prepend_keymap = [
+	{ on = "e",         run = "open",                        desc = "Open selected files" },
+	{ on = "E",         run = "open --interactive",          desc = "Open selected files interactively" },
+]
