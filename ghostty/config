@@ -1,4 +1,5 @@
-gtk-single-instance = true
+# Set to false because gtk memory leak
+gtk-single-instance = false
 cursor-style = bar
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
 window-show-tab-bar = auto
@@ -43,4 +44,3 @@ window-save-state = always
 # clipboard-write = allow
 
 # config-file = ?config-dankcolors
-#
