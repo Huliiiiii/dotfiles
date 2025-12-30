@@ -1,9 +1,9 @@
 (list
  (channel
   (inherit (car %default-channels))
-  (url "https://mirror.nju.edu.cn/git/guix.git"))
+  (url "https://codeberg.org/guix/guix.git"))
   
- #; (channel
+ (channel
   (name 'nonguix)
   (url "https://gitlab.com/nonguix/nonguix")
   (introduction
