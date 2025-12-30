@@ -1,9 +1,6 @@
 [mgr]
 cwd = { fg = "#82a2be" }
 
-hovered         = { reversed = true }
-preview_hovered = { fg = "#282c34", bg = "#82a2be" }
-
 find_keyword  = { fg = "#282c34", bg = "#f0c674", italic = true }
 find_position = { fg = "#c397d8", bg = "reset", italic = true }
 
@@ -18,6 +15,10 @@ count_selected = { fg = "#1d1f21", bg = "#f0c674" }
 
 border_symbol = "│"
 border_style  = { fg = "#666666" }
+
+[indicator]
+current = { reversed = true }
+preview = { fg = "#282c34", bg = "#82a2be" }
 
 [tabs]
 active   = { fg = "#282c34", bg = "#82a2be", bold = true }
@@ -110,8 +111,8 @@ rules = [
 	{ mime = "application/{pdf,doc,rtf}", fg = "#b6bd68" },
 
 	# Fallback
-	{ name = "*", fg = "#eaeaea" },
-	{ name = "*/", fg = "#82a2be" }
+	{ url = "*", fg = "#eaeaea" },
+	{ url = "*/", fg = "#82a2be" }
 ]
 
 [spot]
