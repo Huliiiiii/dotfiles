@@ -7,7 +7,7 @@ spawn-at-startup "dms" "run"
 
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "sparkle"
-spawn-at-startup "google-chrome"
+spawn-at-startup "gtk-launch" "google-chrome"
 spawn-at-startup "gtk-launch" "wechat"
 spawn-at-startup "gtk-launch" "qq"
 spawn-at-startup "Cherry Studio"

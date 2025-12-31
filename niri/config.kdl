@@ -336,3 +336,5 @@ gestures {
         off
     }
 }
+
+include "dms/colors.kdl"
