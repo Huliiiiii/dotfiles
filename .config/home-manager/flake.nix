@@ -56,16 +56,29 @@
       };
 
       defaultPkgs = with pkgs; [
+        bat
         bottom
+        cargo-binstall
+        cargo-expand
+        cargo-semver-checks
+        cargo-update
+        clang
         codex
         delta
         difftastic
+        direnv
+        dotter
         dust
         fastfetch
+        fd
+        fzf
         gh
+        git
         helix
+        jq
         kdlfmt
         lazygit
+        mergiraf
         mold
         nil
         nixd
@@ -73,6 +86,8 @@
         nodejs
         pnpm
         prettier
+        ripgrep
+        sccache
         taplo
         typos-lsp
         uv
@@ -82,7 +97,7 @@
         xclip
         xsel
         zellij
-        mergiraf
+        zoxide
       ];
       codePkgs = with pkgs; [
         clang

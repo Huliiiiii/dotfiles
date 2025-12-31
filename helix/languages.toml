@@ -38,8 +38,18 @@ name = "markdown"
 # language-servers = [ "markdown-oxide" ]
 
 [[language]]
+name = "nix"
+auto-format = true
+
+[[language]]
 name             = "rust"
 language-servers = [ "rust-analyzer", "typos" ]
+
+[[language]]
+name        = "scheme"
+auto-format = false
+formatter   = { command = "schemat" }
+# indent = { tab-width = 2, unit = "  " }
 
 [[language]]
 name             = "tfvars"

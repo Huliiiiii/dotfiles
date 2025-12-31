@@ -36,8 +36,4 @@ if command -q fcitx5
     # set -gx WEBKIT_IM_MODULE fcitx
 end
 
-if command -q swww
-    . ~/.config/fish/swww.fish
-end
-
 zoxide init fish --cmd cd | source
