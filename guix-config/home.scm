@@ -2,6 +2,7 @@
   (gnu home)
   (gnu packages)
   (gnu services)
+  (gnu home services)
   (gnu home services shells)
   (guix gexp))
 
@@ -22,5 +23,5 @@
       (list
         (simple-service 'extra-profile home-shell-profile-service-type
           (list (plain-file "shell-profile"
-                 "export GUIX_LOCPATH=\"$HOME/.guix-profile/lib/locale\""))))
+                 "export GUIX_LOCPATH=\"$HOME/.guix-home/profile/lib/locale\""))))
       %base-home-services)))
