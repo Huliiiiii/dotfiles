@@ -45,6 +45,7 @@
         system = "x86_64-linux";
         overlays = [
           inputs.yazi.overlays.default
+          inputs.helix-flake.overlays.default
           fenix.overlays.default
           (
             _: prev:
@@ -58,16 +59,7 @@
               opencode = getPkg inputs.llm-agents "opencode";
               # tombi = getPkg inputs.tombi "default";
               tsutsumi = getPkgs inputs.tsutsumi;
-              helix = (
-                inputs.helix-flake.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (oldAttrs: {
-                  cargoBuildFlags = (oldAttrs.cargoBuildFlags or [ ]) ++ [
-                    "--features"
-                    "steel,git"
-                  ];
-                })
-              );
             }
-
           )
         ];
         config.allowUnfree = true;
@@ -110,6 +102,7 @@
         taplo
         typos-lsp
         uv
+        tsutsumi.wakatime-ls
         vscode-json-languageserver
         vtsls
         wget
@@ -189,7 +182,6 @@
                     "rustfmt"
                   ])
                   rust-analyzer-nightly
-                  tsutsumi.wakatime-ls
                   podman-compose
                   yazi
                 ])
