@@ -22,6 +22,14 @@
       url = "github:sxyazi/yazi";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    helix-flake = {
+      url = "github:mattwparas/helix/steel-event-system";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    steel = {
+      url = "github:mattwparas/steel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -33,6 +41,7 @@
     }:
     let
       pkgs = import nixpkgs {
+
         system = "x86_64-linux";
         overlays = [
           inputs.yazi.overlays.default
@@ -49,7 +58,16 @@
               opencode = getPkg inputs.llm-agents "opencode";
               # tombi = getPkg inputs.tombi "default";
               tsutsumi = getPkgs inputs.tsutsumi;
+              helix = (
+                inputs.helix-flake.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (oldAttrs: {
+                  cargoBuildFlags = (oldAttrs.cargoBuildFlags or [ ]) ++ [
+                    "--features"
+                    "steel,git"
+                  ];
+                })
+              );
             }
+
           )
         ];
         config.allowUnfree = true;
@@ -88,6 +106,7 @@
         prettier
         ripgrep
         sccache
+        steel
         taplo
         typos-lsp
         uv
@@ -98,6 +117,9 @@
         xsel
         zellij
         zoxide
+      ];
+      desktopPkgs = with pkgs; [
+        typora
       ];
       codePkgs = with pkgs; [
         clang
@@ -111,13 +133,24 @@
       ];
     in
     {
-      homeConfigurations."huli" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."huli@huli-panasonic" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
           ./home.nix
           (_: {
             home.username = "huli";
             home.homeDirectory = "/home/huli";
+            home.packages = defaultPkgs ++ desktopPkgs;
+          })
+        ];
+      };
+      homeConfigurations."root@huli-panasonic" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./home.nix
+          (_: {
+            home.username = "root";
+            home.homeDirectory = "/home/root";
             home.packages = defaultPkgs;
           })
         ];

@@ -12,8 +12,8 @@ gitui  = "~/.config/gitui"
 helix  = "~/.config/helix"
 yazi   = "~/.config/yazi"
 home = "~"
+home-manager = "~/.config/home-manager"
 '.config' = { target = "~/.config", type = "symbolic" }
-# guix   = { target = "~/.config/guix", type = "symbolic", recurse = false }
 'scripts' = "~/scripts"
 
 [desktop]
