@@ -2,63 +2,68 @@
 name             = "css"
 auto-format      = true
 formatter        = { command = "prettier", args = [ "--parser", "css" ] }
-language-servers = [ "vscode-css-language-server", "emmet-ls" ]
+language-servers = [ "vscode-css-language-server", "emmet-ls", "wakatime-ls" ]
 
 [[language]]
 name             = "hcl"
 language-id      = "terraform"
-language-servers = [ "terraform-ls" ]
+language-servers = [ "terraform-ls", "wakatime-ls" ]
 
 [[language]]
 name             = "html"
 auto-format      = true
 formatter        = { command = "prettier", args = [ "--parser", "html" ] }
-language-servers = [ "vscode-html-language-server", "emmet-ls" ]
+language-servers = [ "vscode-html-language-server", "emmet-ls", "wakatime-ls" ]
 
 [[language]]
 name             = "javascript"
 auto-format      = true
 formatter        = { command = "prettier", args = [ "--parser", "typescript" ] }
-language-servers = [ "vtsls" ]
+language-servers = [ "vtsls", "wakatime-ls" ]
 
 [[language]]
 name        = "json"
 auto-format = true
 formatter   = { command = "prettier", args = [ "--parser", "json" ] }
+language-servers = [ "wakatime-ls" ]
 
 [[language]]
 name             = "jsx"
 auto-format      = true
 formatter        = { command = "prettier", args = [ "--parser", "typescript" ] }
-language-servers = [ "vtsls", "emmet-ls" ]
+language-servers = [ "vtsls", "emmet-ls", "wakatime-ls" ]
 
 [[language]]
 name = "markdown"
+language-servers = [ "wakatime-ls" ]
 # formatter        = { command = "dprint", args = [ "fmt", "--stdin", "md" ] }
 # language-servers = [ "markdown-oxide" ]
 
 [[language]]
 name = "nix"
 auto-format = true
+language-servers = [ "nil","nixd", "wakatime-ls" ]
 
 [[language]]
 name             = "rust"
-language-servers = [ "rust-analyzer", "typos" ]
+language-servers = [ "rust-analyzer", "typos", "wakatime-ls" ]
 
 [[language]]
 name        = "scheme"
 auto-format = false
 formatter   = { command = "schemat" }
+language-servers = [ "wakatime-ls" ]
 # indent = { tab-width = 2, unit = "  " }
 
 [[language]]
 name             = "tfvars"
 language-id      = "terraform-vars"
-language-servers = [ "terraform-ls" ]
+language-servers = [ "terraform-ls", "wakatime-ls" ]
 
 [[language]]
 name        = "toml"
 auto-format = false
+language-servers = [ "wakatime-ls" ]
 
 [[language]]
 name = "tsx"
@@ -68,18 +73,20 @@ language-servers = [
   "vtsls",
   "emmet-ls",
   "oxlint-language-server",
+  "wakatime-ls",
 ]
 
 [[language]]
 name             = "typescript"
 auto-format      = true
 formatter        = { command = "prettier", args = [ "--parser", "typescript" ] }
-language-servers = [ "vtsls", "oxlint-language-server" ]
+language-servers = [ "vtsls", "oxlint-language-server", "wakatime-ls" ]
 
 [language-server]
 deno         = { command = "deno", args = [ "lsp" ] }
 emmet-ls     = { command = "emmet-ls", args = [ "--stdio" ] }
 terraform-ls = { command = "terraform-ls", args = [ "serve" ] }
+wakatime-ls  = { command = "wakatime-ls" }
 
 [language-server.typos]
 # typos-lsp must be on your PATH, or otherwise change this to an absolute path to typos-lsp

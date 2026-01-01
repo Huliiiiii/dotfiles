@@ -1,6 +1,7 @@
 theme = 'catppuccin_macchiato'
 
 [editor]
+idle-timeout = 800
 auto-format = true
 auto-save   = true
 bufferline  = 'multiple'
@@ -83,14 +84,14 @@ layout = [
 ]
 
 [keys.normal]
-'A-[' = 'goto_previous_buffer'
-'A-]' = 'goto_next_buffer'
-'A-w' = ':buffer-close'
+# 'A-[' = 'goto_previous_buffer'
+# 'A-]' = 'goto_next_buffer'
+# 'A-w' = ':buffer-close'
 # 'X' = 'extend_line_above'
 
 [keys.select]
-'A-[' = 'goto_previous_buffer'
-'A-]' = 'goto_next_buffer'
+# 'A-[' = 'goto_previous_buffer'
+# 'A-]' = 'goto_next_buffer'
 # 'X' = 'extend_line_above'
 
 [keys.insert]
