@@ -1,6 +1,6 @@
 set windows-shell := ["pwsh", "-NoLogo", "-Command"]
 
-cfg := "./.config/guix/home.scm"
+cfg := "./guix-config/home.scm"
 
 home-ed:
     hx {{cfg}}

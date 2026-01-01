@@ -6,6 +6,12 @@
   (gnu home services shells)
   (guix gexp))
 
+(define (lines . xs)
+  (let loop ((xs xs) (acc ""))
+    (if (null? xs)
+        acc
+        (loop (cdr xs) (string-append acc (car xs) "\n")))))
+
 (home-environment
   (packages
     (specifications->packages
@@ -23,5 +29,8 @@
       (list
         (simple-service 'extra-profile home-shell-profile-service-type
           (list (plain-file "shell-profile"
-                 "export GUIX_LOCPATH=\"$HOME/.guix-home/profile/lib/locale\""))))
+                 (lines
+                   "export GUIX_LOCPATH=\"$HOME/.guix-home/profile/lib/locale\""
+                   "export EDITOR=hx"
+                   "export VISUAL=hx")))))
       %base-home-services)))
