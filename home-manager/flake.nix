@@ -36,7 +36,6 @@
     inputs@{
       nixpkgs,
       home-manager,
-      fenix,
       ...
     }:
     let
@@ -45,8 +44,8 @@
         system = "x86_64-linux";
         overlays = [
           inputs.yazi.overlays.default
+          inputs.fenix.overlays.default
           inputs.helix-flake.overlays.default
-          fenix.overlays.default
           (
             _: prev:
             let
@@ -59,6 +58,10 @@
               opencode = getPkg inputs.llm-agents "opencode";
               # tombi = getPkg inputs.tombi "default";
               tsutsumi = getPkgs inputs.tsutsumi;
+              helix = (inputs.helix-flake.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (oldAttrs: {
+cargoBuildFlags = (oldAttrs.cargoBuildFlags or []) ++ ["--features" "steel,git"];
+}))
+;
             }
           )
         ];
@@ -155,7 +158,6 @@
           (
             { pkgs, lib, ... }:
             let
-
               buildNpmPackage = pkgs.buildNpmPackage.override { nodejs = pkgs.nodejs_24; };
               pnpm_9 = pkgs.pnpm_9;
               ccr = import ./modules/ccr.nix {
@@ -173,14 +175,16 @@
               home.packages =
                 defaultPkgs
                 ++ codePkgs
+                ++ [
+                  (pkgs.fenix.complete.withComponents [
+              "cargo"
+              "clippy"
+              "rust-src"
+              "rustc"
+              "rustfmt"
+            ])
+                ]
                 ++ (with pkgs; [
-                  (fenix.complete.withComponents [
-                    "cargo"
-                    "clippy"
-                    "rust-src"
-                    "rustc"
-                    "rustfmt"
-                  ])
                   rust-analyzer-nightly
                   podman-compose
                   yazi
