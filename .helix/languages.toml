@@ -1,0 +1,5 @@
+[[languages]]
+name = "scheme"
+language-servers = [
+  "steel-language-server"
+]
