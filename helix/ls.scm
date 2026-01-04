@@ -35,19 +35,15 @@
             (config (provideFormatter #t)
                     (json (hash "validate" (hash "enable" #t) "format" (hash "enable" #t)))))
 
-(define-lsp
- "yaml-language-server"
- (command "yaml-language-server")
- (args '("--stdio"))
- (config
-  (yaml (hash*
-         (("format" "enable") #t)
-         (("validation") #t)
-         (("schemas")
-          (hashmap
-           ("https://json.schemastore.org/github-workflow.json" ".github/workflows/*.{yml,yaml}")
-           ("https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json"
-            "roles/{tasks,handlers}/*.{yml,yaml}")))))))
+(define-lsp "yaml-language-server"
+            (command "yaml-language-server") (args '("--stdio"))
+            (config
+              (yaml (hash*
+                      (("format" "enable") #t)
+                      (("validation") #t)
+                      (("schemas")
+                       (hashmap ("https://json.schemastore.org/github-workflow.json" ".github/workflows/*.{yml,yaml}")
+                                ("https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" "roles/{tasks,handlers}/*.{yml,yaml}")))))))
 
 (define-lsp "vtsls"
             (command "vtsls")
@@ -64,6 +60,7 @@
                                        (("preferences" "importModuleSpecifierEnding") "auto")
                                        (("suggest" "completeFunctionCalls") #t)
                                        (("tsserver" "enableTracing") #t)
-                                       (("tsserver" "pluginPaths")
-                                        (list "typescript-plugin-css-modules" "./node_modules"))
+                                       (("tsserver" "pluginPaths") (list "typescript-plugin-css-modules"
+                                                                         "./node_modules"))
                                        (("updateImportsOnFileMove" "enabled") "always")))))
+

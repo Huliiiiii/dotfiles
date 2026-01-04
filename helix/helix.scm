@@ -38,3 +38,4 @@
                 (helix.misc.set-status! "Current file is outside workspace; copied absolute path")
                 (set-register! #\+ (list path)))))
         (helix.misc.set-status! "No current file or workspace"))))
+

@@ -17,3 +17,4 @@
 (define-syntax hashmap
   (syntax-rules ()
     [(_ (k v) ...) (apply hash (append (list k v) ...))]))
+

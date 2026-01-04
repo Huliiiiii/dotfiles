@@ -17,7 +17,7 @@
 (define-language "html"
                  (auto-format #t)
                  (formatter (command "prettier") (args '("--parser" "html")))
-                 (language-servers (append global-ls '("vscode-html-language-server") html-ext-ls)))
+                 (language-servers (append global-ls html-ext-ls '("vscode-html-language-server"))))
 
 (define-language "javascript"
                  (auto-format #t)
@@ -47,9 +47,10 @@
 
 (define-language "scheme"
                  (auto-format #t)
-                 (formatter (command "raco") (args '("fmt" "-i")))
+                 (formatter (command "raco") (args '("fixw")))
+                 ; (formatter (command "raco") (args '("fmt" "-i")))
                  ; (formatter (command "schemat") (args '()))
-                 (language-servers (append global-ls '("steel-language-server"))))
+                 (language-servers (append global-ls '())))
 
 (define-language "tfvars"
                  (language-id "terraform-vars")
@@ -66,3 +67,4 @@
                  (auto-format #t)
                  (formatter (command "prettier") (args '("--parser" "typescript")))
                  (language-servers (append global-ls js-ls-base)))
+
