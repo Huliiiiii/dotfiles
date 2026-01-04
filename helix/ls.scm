@@ -1,18 +1,5 @@
 (require "helix/configuration.scm")
-
-(define-syntax hash-nest
-  (syntax-rules ()
-    [(_ (k) v) (hash k v)]
-    [(_ (k ks ...) v) (hash k (hash-nest (ks ...) v))]))
-
-(define-syntax hash-kv
-  (syntax-rules ()
-    [(_ (k) v) (list k v)]
-    [(_ (k ks ...) v) (list k (hash-nest (ks ...) v))]))
-
-(define-syntax hash*
-  (syntax-rules ()
-    [(_ (path value) ...) (apply hash (append (hash-kv path value) ...))]))
+(require "./utils.scm")
 
 (define-lsp "deno" (command "deno") (args '("lsp")))
 (define-lsp "emmet-ls" (command "emmet-ls") (args '("--stdio")))
@@ -53,15 +40,14 @@
  (command "yaml-language-server")
  (args '("--stdio"))
  (config
-  (yaml
-   (hash*
-    (("format" "enable") #t)
-    (("validation") #t)
-    (("schemas")
-     (hash "https://json.schemastore.org/github-workflow.json"
-           ".github/workflows/*.{yml,yaml}"
-           "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json"
-           "roles/{tasks,handlers}/*.{yml,yaml}"))))))
+  (yaml (hash*
+         (("format" "enable") #t)
+         (("validation") #t)
+         (("schemas")
+          (hashmap
+           ("https://json.schemastore.org/github-workflow.json" ".github/workflows/*.{yml,yaml}")
+           ("https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json"
+            "roles/{tasks,handlers}/*.{yml,yaml}")))))))
 
 (define-lsp "vtsls"
             (command "vtsls")
