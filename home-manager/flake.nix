@@ -58,10 +58,14 @@
               opencode = getPkg inputs.llm-agents "opencode";
               # tombi = getPkg inputs.tombi "default";
               tsutsumi = getPkgs inputs.tsutsumi;
-              helix = (inputs.helix-flake.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (oldAttrs: {
-cargoBuildFlags = (oldAttrs.cargoBuildFlags or []) ++ ["--features" "steel,git"];
-}))
-;
+              helix = (
+                inputs.helix-flake.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (oldAttrs: {
+                  cargoBuildFlags = (oldAttrs.cargoBuildFlags or [ ]) ++ [
+                    "--features"
+                    "steel,git"
+                  ];
+                })
+              );
             }
           )
         ];
@@ -71,6 +75,7 @@ cargoBuildFlags = (oldAttrs.cargoBuildFlags or []) ++ ["--features" "steel,git"]
       defaultPkgs = with pkgs; [
         bat
         bottom
+        cachix
         cargo-binstall
         cargo-expand
         cargo-semver-checks
@@ -103,9 +108,9 @@ cargoBuildFlags = (oldAttrs.cargoBuildFlags or []) ++ ["--features" "steel,git"]
         sccache
         steel
         taplo
+        tsutsumi.wakatime-ls
         typos-lsp
         uv
-        tsutsumi.wakatime-ls
         vscode-json-languageserver
         vtsls
         wget
@@ -115,7 +120,6 @@ cargoBuildFlags = (oldAttrs.cargoBuildFlags or []) ++ ["--features" "steel,git"]
         zoxide
       ];
       desktopPkgs = with pkgs; [
-        typora
       ];
       codePkgs = with pkgs; [
         clang
@@ -177,17 +181,18 @@ cargoBuildFlags = (oldAttrs.cargoBuildFlags or []) ++ ["--features" "steel,git"]
                 ++ codePkgs
                 ++ [
                   (pkgs.fenix.complete.withComponents [
-              "cargo"
-              "clippy"
-              "rust-src"
-              "rustc"
-              "rustfmt"
-            ])
+                    "cargo"
+                    "clippy"
+                    "rust-src"
+                    "rustc"
+                    "rustfmt"
+                  ])
                 ]
                 ++ (with pkgs; [
                   rust-analyzer-nightly
                   podman-compose
                   yazi
+                  racket
                 ])
                 ++ [
                   ccr
