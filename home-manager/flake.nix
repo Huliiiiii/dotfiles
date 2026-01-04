@@ -72,16 +72,12 @@
         config.allowUnfree = true;
       };
 
-      defaultPkgs = with pkgs; [
+      baseTools = with pkgs; [
         bat
         bottom
         cachix
         cargo-binstall
-        cargo-expand
-        cargo-semver-checks
         cargo-update
-        clang
-        codex
         delta
         difftastic
         direnv
@@ -97,40 +93,48 @@
         kdlfmt
         lazygit
         mergiraf
-        mold
-        nil
-        nixd
-        nixfmt-rfc-style
-        nodejs
-        pnpm
-        prettier
         ripgrep
-        sccache
         steel
-        taplo
-        tsutsumi.wakatime-ls
-        typos-lsp
         uv
-        vscode-json-languageserver
-        vtsls
         wget
-        xclip
-        xsel
         zellij
         zoxide
       ];
-      desktopPkgs = with pkgs; [
-      ];
-      codePkgs = with pkgs; [
+      buildTools = with pkgs; [
         clang
-        claude-code
-        emmet-language-server
-        markdown-oxide
-        marksman
-        opencode
-        oxlint
-        tombi
+        mold
+        sccache
       ];
+      rustTools = with pkgs; [
+        cargo-expand
+        cargo-semver-checks
+      ];
+      llmTools = with pkgs; [
+        claude-code
+        codex
+        opencode
+      ];
+      baseLs = with pkgs; [
+        marksman
+        nil
+        nixd
+        nixfmt-rfc-style
+        prettier
+        taplo
+        tombi
+        tsutsumi.wakatime-ls
+        typos-lsp
+        vscode-json-languageserver
+      ];
+      tsTools = with pkgs; [
+        emmet-language-server
+        nodejs
+        oxlint
+        pnpm
+        vtsls
+      ];
+
+      defaultPkgs = baseTools ++ buildTools ++ baseLs ++ llmTools;
     in
     {
       homeConfigurations."huli@huli-panasonic" = home-manager.lib.homeManagerConfiguration {
@@ -140,7 +144,7 @@
           (_: {
             home.username = "huli";
             home.homeDirectory = "/home/huli";
-            home.packages = defaultPkgs ++ desktopPkgs;
+            home.packages = defaultPkgs;
           })
         ];
       };
@@ -178,7 +182,8 @@
               home.homeDirectory = "/home/Huliiiiii";
               home.packages =
                 defaultPkgs
-                ++ codePkgs
+                ++ tsTools
+                ++ rustTools
                 ++ [
                   (pkgs.fenix.complete.withComponents [
                     "cargo"
@@ -199,7 +204,6 @@
                 ];
             }
           )
-
         ];
       };
 
