@@ -95,6 +95,7 @@
         mergiraf
         ripgrep
         steel
+        systemd-manager-tui
         uv
         wget
         zellij
@@ -194,10 +195,11 @@
                   ])
                 ]
                 ++ (with pkgs; [
-                  rust-analyzer-nightly
                   podman-compose
-                  yazi
+                  podman-tui
                   racket
+                  rust-analyzer-nightly
+                  yazi
                 ])
                 ++ [
                   ccr
