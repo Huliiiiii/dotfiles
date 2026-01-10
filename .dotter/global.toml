@@ -12,6 +12,7 @@ gitui  = "~/.config/gitui"
 helix  = "~/.config/helix"
 yazi   = "~/.config/yazi"
 home = "~"
+zellij = "~/.config/zellij"
 home-manager = "~/.config/home-manager"
 '.config' = { target = "~/.config", type = "symbolic" }
 'scripts' = "~/scripts"
