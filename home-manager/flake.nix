@@ -18,10 +18,10 @@
     codex.url = "github:sadjow/codex-cli-nix";
     llm-agents.url = "github:numtide/llm-agents.nix";
     tombi.url = "github:tombi-toml/tombi";
-    yazi = {
-      url = "github:sxyazi/yazi";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # yazi = {
+    #   url = "github:sxyazi/yazi";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     helix-flake = {
       url = "github:mattwparas/helix/steel-event-system";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,7 +43,7 @@
 
         system = "x86_64-linux";
         overlays = [
-          inputs.yazi.overlays.default
+          # inputs.yazi.overlays.default
           inputs.fenix.overlays.default
           inputs.helix-flake.overlays.default
           (
