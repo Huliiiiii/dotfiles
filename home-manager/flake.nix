@@ -93,17 +93,17 @@
         kdlfmt
         lazygit
         mergiraf
+        nodejs
         ripgrep
         steel
         systemd-manager-tui
         uv
         wget
+        yazi
         zellij
         zoxide
       ];
       buildTools = with pkgs; [
-        clang
-        mold
         sccache
       ];
       rustTools = with pkgs; [
@@ -129,7 +129,6 @@
       ];
       tsTools = with pkgs; [
         emmet-language-server
-        nodejs
         oxlint
         pnpm
         vtsls
@@ -196,10 +195,11 @@
                 ]
                 ++ (with pkgs; [
                   podman-compose
+                  clang
+                  mold
                   podman-tui
                   racket
                   rust-analyzer-nightly
-                  yazi
                 ])
                 ++ [
                   ccr
