@@ -65,7 +65,7 @@ layout {
 }
 
 window-rule {
-    // geometry-corner-radius 4
+    geometry-corner-radius 0
     tiled-state true
     clip-to-geometry true
     draw-border-with-background false

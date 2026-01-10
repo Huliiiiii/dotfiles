@@ -33,6 +33,7 @@ include "recent-windows.kdl"
 include "binds.kdl"
 include "color.kdl"
 include "input.kdl"
+include "window.kdl"
 
 output "DP-1" {
     // mode "1920x790@60"

@@ -1,0 +1,6 @@
+window-rule {
+	match app-id="wechat" title="wechat|预览|图片和视频"
+	match app-id="wechat" is-urgent=true
+
+	open-floating true
+}
