@@ -11,17 +11,13 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    tsutsumi = {
-      url = "github:Fuwn/tsutsumi";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     codex.url = "github:sadjow/codex-cli-nix";
     llm-agents.url = "github:numtide/llm-agents.nix";
     tombi.url = "github:tombi-toml/tombi";
-    # yazi = {
-    #   url = "github:sxyazi/yazi";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    wakatime-ls = {
+      url = "github:mrnossiom/wakatime-ls";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     helix-flake = {
       url = "github:mattwparas/helix/steel-event-system";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -56,6 +52,7 @@
               codex = getPkg inputs.codex "default";
               droid = getPkg inputs.llm-agents "droid";
               opencode = getPkg inputs.llm-agents "opencode";
+              wakatime-ls = getPkg inputs.wakatime-ls "default";
               # tombi = getPkg inputs.tombi "default";
               tsutsumi = getPkgs inputs.tsutsumi;
               helix = (
@@ -98,6 +95,7 @@
         steel
         systemd-manager-tui
         uv
+        wakatime-cli
         wget
         yazi
         zellij
@@ -119,11 +117,11 @@
         marksman
         nil
         nixd
-        nixfmt-rfc-style
+        nixfmt
         prettier
         taplo
         tombi
-        tsutsumi.wakatime-ls
+        wakatime-ls
         typos-lsp
         vscode-json-languageserver
       ];
@@ -131,6 +129,7 @@
         emmet-language-server
         oxlint
         pnpm
+        tailwindcss-language-server
         vtsls
       ];
 
