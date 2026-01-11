@@ -2,7 +2,7 @@
 (require "utils.scm")
 
 (define global-ls '("wakatime-ls" "typos"))
-(define js-ls-base '("vtsls" "oxlint-language-server"))
+(define js-ls-base '("vtsls" "oxlint-language-server" "tailwindcss-ls"))
 (define html-ext-ls '("emmet-ls"))
 
 (define-language "css"
@@ -24,15 +24,25 @@
                  (formatter (command "prettier") (args '("--parser" "typescript")))
                  (language-servers (append global-ls js-ls-base)))
 
-(define-language "json"
+(define-language "typescript"
                  (auto-format #t)
-                 (formatter (command "prettier") (args '("--parser" "json")))
-                 (language-servers global-ls))
+                 (formatter (command "prettier") (args '("--parser" "typescript")))
+                 (language-servers (append global-ls js-ls-base)))
 
 (define-language "jsx"
                  (auto-format #t)
                  (formatter (command "prettier") (args '("--parser" "typescript")))
-                 (language-servers (append global-ls js-ls-base html-ext-ls)))
+                 (language-servers (append global-ls html-ext-ls js-ls-base)))
+
+(define-language "tsx"
+                 (auto-format #t)
+                 (formatter (command "prettier") (args '("--parser" "typescript")))
+                 (language-servers (append global-ls html-ext-ls js-ls-base)))
+
+(define-language "json"
+                 (auto-format #t)
+                 (formatter (command "prettier") (args '("--parser" "json")))
+                 (language-servers (append global-ls '("vscode-json-language-server"))))
 
 (define-language "markdown" (language-servers global-ls))
 
@@ -57,14 +67,4 @@
                  (language-servers (append global-ls '("terraform-ls"))))
 
 (define-language "toml" (auto-format #f) (language-servers global-ls))
-
-(define-language "tsx"
-                 (auto-format #t)
-                 (formatter (command "prettier") (args '("--parser" "typescript")))
-                 (language-servers (append global-ls html-ext-ls js-ls-base)))
-
-(define-language "typescript"
-                 (auto-format #t)
-                 (formatter (command "prettier") (args '("--parser" "typescript")))
-                 (language-servers (append global-ls js-ls-base)))
 

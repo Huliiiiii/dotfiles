@@ -3,25 +3,24 @@
 (require (prefix-in helix.static. "helix/static.scm"))
 (require (prefix-in helix.misc. "helix/misc.scm"))
 
-(provide yank-curpath
-         yank-curpath-abs)
-
 (define (current-path)
   (let* ([focus (editor-focus)]
          [focus-doc-id (editor->doc-id focus)])
     (editor-document->path focus-doc-id)))
 
+(provide yank-path-abs)
 ;;@doc
 ;; Copy the current file path (absolute) to the clipboard.
-(define (yank-curpath-abs)
+(define (yank-path-abs)
   (let ([path (current-path)])
     (if path
         (set-register! #\+ (list path))
         (helix.misc.set-status! "No current file"))))
 
+(provide yank-path)
 ;;@doc
 ;; Copy the current file path relative to the workspace root to the clipboard.
-(define (yank-curpath)
+(define (yank-path)
   (let ([path (current-path)]
         [root (find-workspace)])
     (if (and path root)

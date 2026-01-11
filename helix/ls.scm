@@ -9,6 +9,7 @@
 (define-lsp "steel-language-server" (command "steel-language-server") (args '()))
 
 (define-lsp "oxlint-language-server" (command "oxlint") (args '("--lsp")))
+
 (define-lsp "tombi" (command "tombi") (args '("lsp")) (provideFormatter #t))
 
 (define-lsp "typos"
