@@ -39,35 +39,28 @@
                 (set-register! #\+ (list path)))))
         (helix.misc.set-status! "No current file or workspace"))))
 
-(define (ascii-alphabetic? ch)
-  (let ([code (char->integer ch)])
-    (or (and (<= 65 code) (<= code 90))
-        (and (<= 97 code) (<= code 122)))))
+(define (whitespace-char? ch)
+  (memv ch '(#\space #\tab #\newline #\return)))
 
-(define (ascii-numeric? ch)
-  (let ([code (char->integer ch)])
-    (and (<= 48 code) (<= code 57))))
+(define (token-delimiter? ch)
+  (or (whitespace-char? ch)
+      (memv ch '(#\( #\) #\[ #\] #\{ #\} #\< #\> #\, #\;))))
 
-(define (symbol-char? ch)
-  (or (ascii-alphabetic? ch)
-      (ascii-numeric? ch)
-      (memv ch '(#\_ #\- #\? #\! #\* #\+ #\/ #\: #\< #\> #\= #\$))))
-
-(define (extract-symbol-at rope cursor-pos)
+(define (extract-token-at rope cursor-pos)
   (let* ([len (text.rope-len-chars rope)]
          [pos (if (> cursor-pos len) len cursor-pos)]
          [idx (cond
-                [(and (< pos len) (symbol-char? (text.rope-char-ref rope pos))) pos]
-                [(and (> pos 0) (> len 0) (symbol-char? (text.rope-char-ref rope (- pos 1)))) (- pos 1)]
+                [(and (< pos len) (not (token-delimiter? (text.rope-char-ref rope pos)))) pos]
+                [(and (> pos 0) (> len 0) (not (token-delimiter? (text.rope-char-ref rope (- pos 1))))) (- pos 1)]
                 [else #f])])
     (if (not idx)
         #f
         (let* ([start (let loop ([i idx])
-                        (if (and (> i 0) (symbol-char? (text.rope-char-ref rope (- i 1))))
+                        (if (and (> i 0) (not (token-delimiter? (text.rope-char-ref rope (- i 1)))))
                             (loop (- i 1))
                             i))]
                [end (let loop ([i (+ idx 1)])
-                      (if (and (< i len) (symbol-char? (text.rope-char-ref rope i)))
+                      (if (and (< i len) (not (token-delimiter? (text.rope-char-ref rope i))))
                           (loop (+ i 1))
                           i))]
                [slice (text.rope->slice rope start end)])
@@ -97,13 +90,13 @@
          [root (find-workspace)]
          [rope (editor->text focus-doc-id)]
          [pos (helix.misc.cursor-position)]
-         [symbol (extract-symbol-at rope pos)])
+         [token (extract-token-at rope pos)])
     (cond
       [(not path) (helix.misc.set-status! "No current file")]
-      [(not symbol) (helix.misc.set-status! "No symbol under cursor")]
+      [(not token) (helix.misc.set-status! "No symbol under cursor")]
       [else
        (let ([path* (path-relative-to-workspace path root)])
-         (set-register! #\+ (list (string-append path* " " symbol))))])))
+         (set-register! #\+ (list (string-append path* " " token))))])))
 
 (provide yank-location)
 ;;@doc
@@ -122,4 +115,3 @@
                [line (+ 1 (text.rope-char->line rope pos*))]
                [path* (path-relative-to-workspace path root)])
           (set-register! #\+ (list (string-append path* ":" (number->string line))))))))
-
