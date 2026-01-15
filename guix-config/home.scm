@@ -20,15 +20,19 @@
             "guile"
             "guile-wisp"
             "hello"
+            "ffmpegthumbnailer"
             "just"
             "nss-certs"
             "racket")))
   (services
     (append
-      (list (simple-service 'extra-profile home-shell-profile-service-type
-                            (list (plain-file "shell-profile"
-                                              (lines "export GUIX_LOCPATH=\"$HOME/.guix-home/profile/lib/locale\""
-                                                     "export EDITOR=hx"
-                                                     "export VISUAL=hx")))))
+      (list
+        (simple-service
+          'extra-profile home-shell-profile-service-type
+          (list (plain-file "shell-profile"
+                            (lines
+                              "export GUIX_LOCPATH=\"$HOME/.guix-home/profile/lib/locale\""
+                              "export EDITOR=hx"
+                              "export VISUAL=hx")))))
       %base-home-services)))
 
