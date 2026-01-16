@@ -1,4 +1,8 @@
-{ pkgs, lib, buildNpmPackage }:
+{
+  pkgs,
+  lib,
+  buildNpmPackage,
+}:
 
 buildNpmPackage (this: {
   pname = "claude-code-router";
@@ -18,6 +22,7 @@ buildNpmPackage (this: {
   };
 
   nativeBuildInputs = with pkgs; [
+    pnpm_9
     esbuild
     makeBinaryWrapper
     pnpmConfigHook
@@ -65,6 +70,7 @@ buildNpmPackage (this: {
     };
 
     nativeBuildInputs = [
+      pkgs.pnpm_9
       pkgs.pnpmConfigHook
     ];
 

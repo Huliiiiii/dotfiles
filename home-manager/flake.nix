@@ -104,6 +104,10 @@
       buildTools = with pkgs; [
         sccache
       ];
+      linkers = with pkgs; [
+        mold
+        wild-unwrapped
+      ];
       rustTools = with pkgs; [
         cargo-expand
         cargo-semver-checks
@@ -181,6 +185,7 @@
                 defaultPkgs
                 ++ tsTools
                 ++ rustTools
+                ++ linkers
                 ++ [
                   (pkgs.fenix.complete.withComponents [
                     "cargo"
@@ -193,7 +198,6 @@
                 ++ (with pkgs; [
                   podman-compose
                   clang
-                  mold
                   podman-tui
                   racket
                   rust-analyzer-nightly
