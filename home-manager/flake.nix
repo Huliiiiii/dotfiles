@@ -166,13 +166,11 @@
             { pkgs, lib, ... }:
             let
               buildNpmPackage = pkgs.buildNpmPackage.override { nodejs = pkgs.nodejs_24; };
-              pnpm_9 = pkgs.pnpm_9;
               ccr = import ./modules/ccr.nix {
                 inherit
                   pkgs
                   lib
                   buildNpmPackage
-                  pnpm_9
                   ;
               };
             in

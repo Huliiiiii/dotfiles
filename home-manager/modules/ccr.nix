@@ -1,4 +1,4 @@
-{ pkgs, lib, buildNpmPackage, pnpm_9 }:
+{ pkgs, lib, buildNpmPackage }:
 
 buildNpmPackage (this: {
   pname = "claude-code-router";
@@ -11,7 +11,7 @@ buildNpmPackage (this: {
   };
 
   npmDeps = null;
-  pnpmDeps = pnpm_9.fetchDeps {
+  pnpmDeps = pkgs.fetchPnpmDeps {
     inherit (this) pname src;
     fetcherVersion = 2;
     hash = "sha256-l4OGGKJS5iz+OAwgH8xJwddSlSVnY4jzppt1wXQd19U=";
@@ -20,10 +20,10 @@ buildNpmPackage (this: {
   nativeBuildInputs = with pkgs; [
     esbuild
     makeBinaryWrapper
-    pnpm_9.configHook
+    pnpmConfigHook
   ];
 
-  npmConfigHook = pnpm_9.configHook;
+  npmConfigHook = pkgs.pnpmConfigHook;
   buildPhase = ''
     runHook preBuild
 
@@ -58,17 +58,17 @@ buildNpmPackage (this: {
     sourceRoot = "${finalAttrs'.src.name}/ui";
 
     npmDeps = null;
-    pnpmDeps = pnpm_9.fetchDeps {
+    pnpmDeps = pkgs.fetchPnpmDeps {
       inherit (finalAttrs') pname src sourceRoot;
       fetcherVersion = 2;
       hash = "sha256-ZjYLUec9EADQmKfju8hMbq0y4f1TDVwjbe3yw8Gh4Ac=";
     };
 
     nativeBuildInputs = [
-      pnpm_9.configHook
+      pkgs.pnpmConfigHook
     ];
 
-    npmConfigHook = pnpm_9.configHook;
+    npmConfigHook = pkgs.pnpmConfigHook;
 
     installPhase = ''
       runHook preInstall
