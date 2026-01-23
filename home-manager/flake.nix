@@ -130,7 +130,7 @@
         vscode-json-languageserver
       ];
       tsTools = with pkgs; [
-        emmet-language-server
+        emmet-ls
         oxlint
         pnpm
         tailwindcss-language-server
