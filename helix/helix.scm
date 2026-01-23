@@ -9,15 +9,6 @@
          [focus-doc-id (editor->doc-id focus)])
     (editor-document->path focus-doc-id)))
 
-(provide yank-path-abs)
-;;@doc
-;; Copy the current file path (absolute) to the clipboard.
-(define (yank-path-abs)
-  (let ([path (current-path)])
-    (if path
-        (set-register! #\+ (list path))
-        (helix.misc.set-status! "No current file"))))
-
 (provide yank-path)
 ;;@doc
 ;; Copy the current file path relative to the workspace root to the clipboard.
@@ -38,6 +29,15 @@
                 (helix.misc.set-status! "Current file is outside workspace; copied absolute path")
                 (set-register! #\+ (list path)))))
         (helix.misc.set-status! "No current file or workspace"))))
+
+(provide yank-path-abs)
+;;@doc
+;; Copy the current file path (absolute) to the clipboard.
+(define (yank-path-abs)
+  (let ([path (current-path)])
+    (if path
+        (set-register! #\+ (list path))
+        (helix.misc.set-status! "No current file"))))
 
 (define (whitespace-char? ch)
   (memv ch '(#\space #\tab #\newline #\return)))
@@ -115,3 +115,4 @@
                [line (+ 1 (text.rope-char->line rope pos*))]
                [path* (path-relative-to-workspace path root)])
           (set-register! #\+ (list (string-append path* ":" (number->string line))))))))
+
