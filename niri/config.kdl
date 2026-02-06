@@ -142,9 +142,6 @@ window-rule {
     match app-id="QQ" title="图片查看器"
     match app-id="QQ" is-urgent=true
 
-    match app-id="wechat" title="wechat|预览"
-    match app-id="wechat" is-urgent=true
-
     open-floating true
 
 }
