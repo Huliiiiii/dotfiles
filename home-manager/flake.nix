@@ -11,7 +11,6 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    codex.url = "github:sadjow/codex-cli-nix";
     llm-agents.url = "github:numtide/llm-agents.nix";
     tombi.url = "github:tombi-toml/tombi";
     wakatime-ls = {
@@ -49,7 +48,7 @@
               getPkgs = src: src.packages.${prev.stdenv.hostPlatform.system};
             in
             {
-              codex = getPkg inputs.codex "default";
+              codex = getPkg inputs.llm-agents "codex";
               droid = getPkg inputs.llm-agents "droid";
               opencode = getPkg inputs.llm-agents "opencode";
               wakatime-ls = getPkg inputs.wakatime-ls "default";
@@ -90,7 +89,6 @@
         kdlfmt
         lazygit
         mergiraf
-        nodejs
         ripgrep
         steel
         systemd-manager-tui
@@ -136,6 +134,8 @@
         tailwindcss-language-server
         vtsls
       ];
+      desktopPkgs = with pkgs; [
+      ];
 
       defaultPkgs = baseTools ++ buildTools ++ baseLs ++ llmTools;
     in
@@ -147,7 +147,7 @@
           (_: {
             home.username = "huli";
             home.homeDirectory = "/home/huli";
-            home.packages = defaultPkgs;
+            home.packages = defaultPkgs ++ desktopPkgs;
           })
         ];
       };
@@ -200,6 +200,7 @@
                   clang
                   podman-tui
                   racket
+                  nodejs
                   rust-analyzer-nightly
                 ])
                 ++ [
@@ -211,4 +212,8 @@
       };
 
     };
+  nixConfig = {
+    extra-substituters = [ "https://cache.numtide.com" ];
+    extra-trusted-public-keys = [ "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=" ];
+  };
 }
