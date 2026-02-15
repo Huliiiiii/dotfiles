@@ -1,7 +1,7 @@
 (require "helix/configuration.scm")
 (require "utils.scm")
 
-(define global-ls '("wakatime-ls" "typos"))
+(define global-ls '("typos"))
 (define js-ls-base '("vtsls" "oxlint-language-server" "tailwindcss-ls"))
 (define html-ext-ls '("emmet-ls"))
 
