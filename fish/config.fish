@@ -36,4 +36,6 @@ if command -q fcitx5
     # set -gx WEBKIT_IM_MODULE fcitx
 end
 
-zoxide init fish --cmd cd | source
+# https://github.com/ajeetdsouza/zoxide/issues/626#issuecomment-1753582198
+set -gx _ZO_FZF_OPTS --scheme=path --tiebreak=end,chunk,index --bind=ctrl-z:ignore,btab:up,tab:down --cycle --keep-right --border=sharp --height=45% --info=inline --layout=reverse --tabstop=1 --exit-0 --select-1
+zoxide init fish | source
