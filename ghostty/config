@@ -1,5 +1,5 @@
 # Set to false because gtk memory leak
-gtk-single-instance = false
+gtk-single-instance = true
 cursor-style = bar
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
 window-show-tab-bar = auto
@@ -10,29 +10,30 @@ font-size=14
 # font-variation=wght=450
 keybind = ctrl+n=new_window
 
-keybind=performable:ctrl+h=goto_split:left
-keybind=performable:ctrl+j=goto_split:bottom
-keybind=performable:ctrl+k=goto_split:top
-keybind=performable:ctrl+l=goto_split:right
+keybind = alt+w>h=new_split:left
+keybind = alt+w>j=new_split:down
+keybind = alt+w>k=new_split:up
+keybind = alt+w>l=new_split:right
+keybind = alt+w>f=toggle_split_zoom
+keybind=performable:alt+h=goto_split:left
+keybind=performable:alt+j=goto_split:bottom
+keybind=performable:alt+k=goto_split:top
+keybind=performable:alt+l=goto_split:right
 
-keybind = ctrl+w>h=new_split:left
-keybind = ctrl+w>j=new_split:down
-keybind = ctrl+w>k=new_split:up
-keybind = ctrl+w>l=new_split:right
-keybind = ctrl+w>f=toggle_split_zoom
 
-keybind = ctrl+]=next_tab
-keybind = ctrl+[=previous_tab
-keybind = ctrl+1=goto_tab:1
-keybind = ctrl+2=goto_tab:2
-keybind = ctrl+3=goto_tab:3
-keybind = ctrl+4=goto_tab:4
-keybind = ctrl+4=goto_tab:4
-keybind = ctrl+5=goto_tab:5
-keybind = ctrl+6=goto_tab:6
-keybind = ctrl+7=goto_tab:7
-keybind = ctrl+8=goto_tab:8
-keybind = ctrl+9=goto_tab:9
+keybind = alt+]=next_tab
+keybind = alt+[=previous_tab
+keybind = alt+1=goto_tab:1
+keybind = alt+2=goto_tab:2
+keybind = alt+3=goto_tab:3
+keybind = alt+4=goto_tab:4
+keybind = alt+4=goto_tab:4
+keybind = alt+5=goto_tab:5
+keybind = alt+6=goto_tab:6
+keybind = alt+7=goto_tab:7
+keybind = alt+8=goto_tab:8
+keybind = alt+9=goto_tab:9
+
 keybind = ctrl+enter=unbind
 # keybind = ctrl+n=unbind
 

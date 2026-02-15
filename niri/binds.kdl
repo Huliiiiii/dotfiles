@@ -108,7 +108,7 @@ binds {
         spawn "fuzzel";
     }
     Mod+T hotkey-overlay-title="Open the Terminal: ghostty" {
-        spawn-sh "ghostty";
+        spawn-sh "ghostty +new-window";
     }
     Mod+V hotkey-overlay-title="Clipboard Manager" {
         spawn "dms" "ipc" "call" "clipboard" "toggle";
