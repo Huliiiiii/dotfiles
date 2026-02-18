@@ -45,11 +45,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1771052630,
-        "narHash": "sha256-R/52n/XyyWHYL1Mw0Q0GFF/nxyRyaE8gkLyfvi+ebxU=",
+        "lastModified": 1771398736,
+        "narHash": "sha256-pjV3C7VJHN0o2SvE3O6xiwraLt7bnlWIF3o7Q0BC1jk=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "d0555da98576b8611c25df0c208e51e9a182d95f",
+        "rev": "0f608091816de13d92e1f4058b501028b782dddd",
         "type": "github"
       },
       "original": {
@@ -141,11 +141,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1771121283,
-        "narHash": "sha256-hXxc3JqZ+xF2VjTOczmYHVttRIWlxGh5RmYZ9OcMPD8=",
+        "lastModified": 1771207600,
+        "narHash": "sha256-sCytET1N+eOs9bTTlDtV3hRc/g4eclwYWDBRu8uue/8=",
         "owner": "mattwparas",
         "repo": "helix",
-        "rev": "908d48c5dd9700ddff65bcfce8850eea74af0360",
+        "rev": "df8f82a548fd018e9d040ff7b379ed177ff8809c",
         "type": "github"
       },
       "original": {
@@ -162,11 +162,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771132481,
-        "narHash": "sha256-Tc+YqZ/Q1K35vJK4ji4RbLB/qKGcEq6yh7p4CKoZF60=",
+        "lastModified": 1771422582,
+        "narHash": "sha256-xK5kl3OBZaF1VwziVMX+SZ2LT9Fbu5o8vRDt78uR7no=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1e53254671f36cb7d0e2dcca08730f066d5e69b4",
+        "rev": "b3ccd4bb262f4e6d3248b46cede92b90c4a42094",
         "type": "github"
       },
       "original": {
@@ -182,11 +182,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1771166337,
-        "narHash": "sha256-LGoTd402SI/9I7pDavipdGS2MLzS73cD4+u0JmEjutM=",
+        "lastModified": 1771427464,
+        "narHash": "sha256-VhAD/KfXc5NudSjzhsiU27asKu99jwrb7TsD2BRpLZs=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "d66b5568129f424a047167f9913d578691b56827",
+        "rev": "b9565d386f29e6b10cc7c513be3697e7c6694f9c",
         "type": "github"
       },
       "original": {
@@ -197,11 +197,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1770843696,
-        "narHash": "sha256-LovWTGDwXhkfCOmbgLVA10bvsi/P8eDDpRudgk68HA8=",
+        "lastModified": 1771177547,
+        "narHash": "sha256-trTtk3WTOHz7hSw89xIIvahkgoFJYQ0G43IlqprFoMA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2343bbb58f99267223bc2aac4fc9ea301a155a16",
+        "rev": "ac055f38c798b0d87695240c7b761b82fc7e5bc2",
         "type": "github"
       },
       "original": {
@@ -258,11 +258,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1771007332,
-        "narHash": "sha256-K5Ym2R9oXBBAew2DfIC/dVjjkYo7nB5DbRGb5a3Fkq8=",
+        "lastModified": 1771353660,
+        "narHash": "sha256-yp1y55kXgaa08g/gR3CNiUdkg1JRjPYfkKtEIRNE6S8=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "bbc84d335fbbd9b3099d3e40c7469ee57dbd1873",
+        "rev": "09f2d468eda25a5f06ae70046357c70ae5cd77c7",
         "type": "github"
       },
       "original": {
@@ -346,11 +346,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1771042582,
-        "narHash": "sha256-e1MQR98bBHjGqxoIOQ4NJ1rEr9+RKMdCO2or/+7m1aE=",
+        "lastModified": 1771207521,
+        "narHash": "sha256-YX1d4wuxqz0fJWsKaZX9g2VkZxGpb+zhsLMOSbGSA6I=",
         "owner": "mattwparas",
         "repo": "steel",
-        "rev": "b9158d14123f5d6245e7e54179719fcf629ae534",
+        "rev": "0a1b043b9c3d17c49cb3d47a97867527f4e46450",
         "type": "github"
       },
       "original": {
@@ -412,11 +412,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1771031976,
-        "narHash": "sha256-LEostRlvnINO1NVggMhB4lCBvonYo8p65CLNsP47bH0=",
+        "lastModified": 1771377804,
+        "narHash": "sha256-tdqfxaWcOizdFpT0q9SFDl+T4nW3iC7N3caOc15VyJM=",
         "owner": "tombi-toml",
         "repo": "tombi",
-        "rev": "ab54b12e8bbb673178ea787eeedeaddc7047b186",
+        "rev": "bf9b7c722ed5f320a8e97ce4aa553155f8d33a90",
         "type": "github"
       },
       "original": {
