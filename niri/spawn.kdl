@@ -1,6 +1,8 @@
-
-spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "--all"
+// Fedora
+spawn-at-startup "/usr/libexec/pam_kwallet_init"
 // Starts DankShell
+// spawn-sh-at-startup "wl-paste --watch cliphist store &"
 spawn-at-startup "dms" "run"
 
 spawn-at-startup "fcitx5" "-d"

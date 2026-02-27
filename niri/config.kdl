@@ -143,7 +143,6 @@ window-rule {
     match app-id="QQ" is-urgent=true
 
     open-floating true
-
 }
 
 // Example: block out two password managers from screen capture.
@@ -175,13 +174,14 @@ window-rule {
     open-on-workspace "chat"
 }
 
-workspace "chrome" {
+workspace "browser" {
     open-on-output "DP-1"
 }
 
 window-rule {
     match at-startup=true app-id="google-chrome"
-    open-on-workspace "chrome"
+    match at-startup=true app-id="zen"
+    open-on-workspace "browser"
 }
 
 workspace "cherry" {
@@ -197,10 +197,10 @@ window-rule {
 //     open-on-output "DP-1"
 // }
 
-window-rule {
-    match at-startup=true app-id="steam"
-    open-on-workspace "steam"
-}
+// window-rule {
+//     match at-startup=true app-id="steam"
+//     open-on-workspace "steam"
+// }
 
 
 gestures {
