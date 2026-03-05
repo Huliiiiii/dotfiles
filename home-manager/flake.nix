@@ -41,6 +41,7 @@
           # inputs.yazi.overlays.default
           inputs.fenix.overlays.default
           inputs.helix-flake.overlays.default
+          inputs.llm-agents.overlays.default
           (
             _: prev:
             let
@@ -85,7 +86,9 @@
         gh
         git
         helix
+        hyperfine
         jq
+        just-lsp
         kdlfmt
         lazygit
         mergiraf
@@ -133,6 +136,15 @@
         pnpm
         tailwindcss-language-server
         vtsls
+      ];
+      dockerTools = with pkgs; [
+        docker-language-server
+        dockerfile-language-server
+        dockerfmt
+      ];
+      pythonTools = with pkgs; [
+        ty
+        ruff
       ];
       desktopPkgs = with pkgs; [
       ];
@@ -185,6 +197,8 @@
                 defaultPkgs
                 ++ tsTools
                 ++ rustTools
+                ++ dockerTools
+                ++ pythonTools
                 ++ linkers
                 ++ [
                   (pkgs.fenix.complete.withComponents [
@@ -201,7 +215,9 @@
                   podman-tui
                   racket
                   nodejs
+                  yarn-berry_4
                   rust-analyzer-nightly
+                  llm-agents.agent-browser
                 ])
                 ++ [
                   ccr
