@@ -8,7 +8,10 @@
 
 (define-lsp "steel-language-server" (command "steel-language-server") (args '()))
 
-(define-lsp "oxlint-language-server" (command "oxlint") (args '("--lsp")))
+(define-lsp "oxlint-language-server"
+            (command "oxlint") (args '("--lsp"))
+            (config (typeAware #t)
+                    (requireConfig #t)))
 
 (define-lsp "tombi" (command "tombi") (args '("lsp")) (provideFormatter #t))
 
@@ -47,21 +50,23 @@
                                 ("https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" "roles/{tasks,handlers}/*.{yml,yaml}")))))))
 
 (define-lsp "vtsls"
-            (command "vtsls")
-            (args '("--stdio"))
-            (config (hostInfo "helix")
-                    (typescript (hash* (("format" "enable") #f)
-                                       (("inlayHints" "enumMemberValues" "enabled") #t)
-                                       (("inlayHints" "functionLikeReturnTypes") #t)
-                                       (("inlayHints" "parameterNames" "enabled") "all")
-                                       (("inlayHints" "parameterTypes" "enabled") #t)
-                                       (("inlayHints" "propertyDeclarationTypes" "enabled") #t)
-                                       (("inlayHints" "variableTypes" "enabled") #t)
-                                       (("preferences" "importModuleSpecifier") "non-relative")
-                                       (("preferences" "importModuleSpecifierEnding") "auto")
-                                       (("suggest" "completeFunctionCalls") #t)
-                                       (("tsserver" "enableTracing") #t)
-                                       (("tsserver" "pluginPaths") (list "typescript-plugin-css-modules"
-                                                                         "./node_modules"))
-                                       (("updateImportsOnFileMove" "enabled") "always")))))
+            (command "vtsls") (args '("--stdio"))
+            (config
+              (hostInfo "helix")
+              (typescript
+                (hash* (("format" "enable") #f)
+                       (("inlayHints" "enumMemberValues" "enabled") #t)
+                       (("inlayHints" "functionLikeReturnTypes" "enabled") #t)
+                       (("inlayHints" "parameterNames" "enabled") "all")
+                       (("inlayHints" "parameterTypes" "enabled") #t)
+                       (("inlayHints" "propertyDeclarationTypes" "enabled") #t)
+                       (("inlayHints" "variableTypes" "enabled") #t)
+                       (("preferences" "importModuleSpecifier") "non-relative")
+                       (("preferences" "importModuleSpecifierEnding") "auto")
+                       (("suggest" "completeFunctionCalls") #t)
+                       (("tsserver" "enableTracing") #t)
+                       (("tsserver" "pluginPaths") (list "typescript-plugin-css-modules"
+                                                         "./node_modules"))
+
+                       (("updateImportsOnFileMove" "enabled") "always")))))
 

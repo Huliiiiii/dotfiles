@@ -2,7 +2,7 @@
 (require "utils.scm")
 
 (define global-ls '("typos"))
-(define js-ls-base '("vtsls" "oxlint-language-server" "tailwindcss-ls"))
+(define js-ls-base '("tailwindcss-ls" "oxlint-language-server" "vtsls"))
 (define html-ext-ls '("emmet-ls"))
 
 (define-language "css"
@@ -21,12 +21,14 @@
 
 (define-language "javascript"
                  (auto-format #t)
-                 (formatter (command "prettier") (args '("--parser" "typescript")))
+                 (formatter
+                   (command "prettier") (args '("--parser" "typescript")))
                  (language-servers (append global-ls js-ls-base)))
 
 (define-language "typescript"
                  (auto-format #t)
-                 (formatter (command "prettier") (args '("--parser" "typescript")))
+                 (formatter
+                   (command "prettier") (args '("--parser" "typescript")))
                  (language-servers (append global-ls js-ls-base)))
 
 (define-language "jsx"
