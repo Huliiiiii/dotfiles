@@ -63,6 +63,7 @@
                   ];
                 })
               );
+              steel = getPkg inputs.steel "default";
             }
           )
         ];
@@ -215,7 +216,7 @@
                   podman-tui
                   racket
                   nodejs
-                  yarn-berry_4
+                  bun
                   rust-analyzer-nightly
                   llm-agents.agent-browser
                 ])
