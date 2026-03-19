@@ -217,6 +217,7 @@
                   racket
                   nodejs
                   bun
+                  pkg-config
                   rust-analyzer-nightly
                   llm-agents.agent-browser
                 ])
