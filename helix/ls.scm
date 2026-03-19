@@ -13,6 +13,20 @@
             (config (typeAware #t)
                     (requireConfig #t)))
 
+(define-lsp "tailwindcss-ls"
+            (config
+              (tailwindCSS
+                (hash "colorDecorators" #f
+                      "experimental"
+                      (hash "classRegex"
+                            (list
+                              (list "\\b(?:const|let|var)\\s+[A-Za-z_$][\\w$]*[cC][lL][aA][sS][sS]\\b(?:\\s*:[^=;]+)?\\s*=\\s*([^;]+)"
+                                    "'([^']*)'")
+                              (list "\\b(?:const|let|var)\\s+[A-Za-z_$][\\w$]*[cC][lL][aA][sS][sS]\\b(?:\\s*:[^=;]+)?\\s*=\\s*([^;]+)"
+                                    "\"([^\"]*)\"")
+                              (list "\\b(?:const|let|var)\\s+[A-Za-z_$][\\w$]*[cC][lL][aA][sS][sS]\\b(?:\\s*:[^=;]+)?\\s*=\\s*([^;]+)"
+                                    "`([^`]*)`")))))))
+
 (define-lsp "tombi" (command "tombi") (args '("lsp")) (provideFormatter #t))
 
 (define-lsp "typos"
@@ -69,4 +83,3 @@
                                                          "./node_modules"))
 
                        (("updateImportsOnFileMove" "enabled") "always")))))
-
