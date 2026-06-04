@@ -25,6 +25,11 @@
       url = "github:mattwparas/steel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hunk = {
+      url = "path:./modules/hunk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
   };
 
   outputs =
@@ -50,8 +55,9 @@
             in
             {
               codex = getPkg inputs.llm-agents "codex";
-              droid = getPkg inputs.llm-agents "droid";
               opencode = getPkg inputs.llm-agents "opencode";
+              codex-acp = getPkg inputs.llm-agents "codex-acp";
+              hunk = getPkg inputs.hunk "default";
               wakatime-ls = getPkg inputs.wakatime-ls "default";
               # tombi = getPkg inputs.tombi "default";
               tsutsumi = getPkgs inputs.tsutsumi;
@@ -118,6 +124,8 @@
         claude-code
         codex
         opencode
+        codex-acp
+        github-copilot-cli
       ];
       baseLs = with pkgs; [
         marksman
@@ -179,6 +187,7 @@
         inherit pkgs;
         modules = [
           ./home.nix
+          inputs.zed-extensions.homeManagerModules.default
           (
             { pkgs, lib, ... }:
             let
@@ -190,6 +199,7 @@
                   buildNpmPackage
                   ;
               };
+              zedExtensions = inputs.zed-extensions.packages.${pkgs.stdenv.hostPlatform.system}.zed-extensions;
             in
             {
               home.username = "Huliiiiii";
@@ -220,10 +230,26 @@
                   pkg-config
                   rust-analyzer-nightly
                   llm-agents.agent-browser
+                  nethogs
+                  yarn-berry_4
                 ])
                 ++ [
                   ccr
+                  pkgs.hunk
                 ];
+              programs.zed-editor-extensions = {
+                enable = true;
+                packages = with zedExtensions; [
+                  dockerfile
+                  emmet
+                  html
+                  just
+                  lua
+                  nix
+                  oxc
+                  tsgo
+                ];
+              };
             }
           )
         ];

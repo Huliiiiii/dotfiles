@@ -6,6 +6,7 @@
 {
   home.stateVersion = "25.11";
   programs.home-manager.enable = true;
+  nix.gc.automatic = true;
   systemd.user.services."cachix-watch-store-huliiiiii" = {
     Unit = {
       Description = "Cachix watch-store (huliiiiii)";
