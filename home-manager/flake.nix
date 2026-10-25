@@ -7,6 +7,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    skills-catalog = {
+      url = "path:./skills";
+      inputs.home-manager.follows = "home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,6 +29,7 @@
     steel = {
       url = "github:mattwparas/steel";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.url = "github:nix-systems/x86_64-linux";
     };
     hunk = {
       url = "path:./modules/hunk";
@@ -46,7 +52,7 @@
           # inputs.yazi.overlays.default
           inputs.fenix.overlays.default
           inputs.helix-flake.overlays.default
-          inputs.llm-agents.overlays.default
+          inputs.llm-agents.overlays.shared-nixpkgs
           (
             _: prev:
             let
@@ -54,21 +60,34 @@
               getPkgs = src: src.packages.${prev.stdenv.hostPlatform.system};
             in
             {
-              codex = getPkg inputs.llm-agents "codex";
-              opencode = getPkg inputs.llm-agents "opencode";
-              codex-acp = getPkg inputs.llm-agents "codex-acp";
+              codex = prev.llm-agents.codex;
+              opencode = prev.llm-agents.opencode;
+              codex-acp = prev.llm-agents.codex-acp;
               hunk = getPkg inputs.hunk "default";
               wakatime-ls = getPkg inputs.wakatime-ls "default";
               # tombi = getPkg inputs.tombi "default";
               tsutsumi = getPkgs inputs.tsutsumi;
-              helix = (
-                inputs.helix-flake.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (oldAttrs: {
-                  cargoBuildFlags = (oldAttrs.cargoBuildFlags or [ ]) ++ [
-                    "--features"
-                    "steel,git"
+              helix =
+                (inputs.helix-flake.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+                  grammarOverlays = [
+                    (_: prev: {
+                      perl = prev.perl.overrideAttrs (oldAttrs: {
+                        postPatch = (oldAttrs.postPatch or "") + ''
+                          substituteInPlace src/bsearch.c \
+                            --replace-fail 'void *bsearch(' 'static void *tsp_bsearch('
+                          substituteInPlace src/tsp_unicode.h \
+                            --replace-fail 'bsearch(' 'tsp_bsearch('
+                        '';
+                      });
+                    })
                   ];
-                })
-              );
+                }).overrideAttrs
+                  (oldAttrs: {
+                    cargoBuildFlags = (oldAttrs.cargoBuildFlags or [ ]) ++ [
+                      "--features"
+                      "steel"
+                    ];
+                  });
               steel = getPkg inputs.steel "default";
             }
           )
@@ -84,7 +103,6 @@
         cargo-update
         delta
         difftastic
-        direnv
         dotter
         dust
         fastfetch
@@ -118,7 +136,7 @@
       ];
       rustTools = with pkgs; [
         cargo-expand
-        cargo-semver-checks
+        # cargo-semver-checks
       ];
       llmTools = with pkgs; [
         claude-code
@@ -141,6 +159,7 @@
       ];
       tsTools = with pkgs; [
         emmet-ls
+        oxfmt
         oxlint
         pnpm
         tailwindcss-language-server
@@ -164,6 +183,7 @@
       homeConfigurations."huli@huli-panasonic" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
+          inputs.skills-catalog.homeManagerModules.default
           ./home.nix
           (_: {
             home.username = "huli";
@@ -175,6 +195,7 @@
       homeConfigurations."root@huli-panasonic" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
+          inputs.skills-catalog.homeManagerModules.default
           ./home.nix
           (_: {
             home.username = "root";
@@ -186,20 +207,14 @@
       homeConfigurations."Huliiiiii@pca-workstation" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
+          inputs.skills-catalog.homeManagerModules.default
           ./home.nix
           inputs.zed-extensions.homeManagerModules.default
           (
-            { pkgs, lib, ... }:
+            { pkgs, ... }:
             let
-              buildNpmPackage = pkgs.buildNpmPackage.override { nodejs = pkgs.nodejs_24; };
-              ccr = import ./modules/ccr.nix {
-                inherit
-                  pkgs
-                  lib
-                  buildNpmPackage
-                  ;
-              };
-              zedExtensions = inputs.zed-extensions.packages.${pkgs.stdenv.hostPlatform.system}.zed-extensions;
+              zedExtensions =
+                inputs.zed-extensions.legacyPackages.${pkgs.stdenv.hostPlatform.system}.zed-extensions;
             in
             {
               home.username = "Huliiiiii";
@@ -232,15 +247,15 @@
                   llm-agents.agent-browser
                   nethogs
                   yarn-berry_4
+                  sing-box
                 ])
                 ++ [
-                  ccr
                   pkgs.hunk
                 ];
               programs.zed-editor-extensions = {
                 enable = true;
                 packages = with zedExtensions; [
-                  dockerfile
+                  # dockerfile
                   emmet
                   html
                   just
