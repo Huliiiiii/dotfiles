@@ -7,6 +7,30 @@
 {
   home.stateVersion = "25.11";
   programs.home-manager.enable = true;
+  home.packages = [ pkgs.kero ];
+  home.file.".local/bin/kero" = {
+    source = "${pkgs.kero}/bin/kero";
+    force = true;
+  };
+  xdg.configFile."systemd/user/kerod.service".force = true;
+  xdg.configFile."systemd/user/default.target.wants/kerod.service".force = true;
+  systemd.user.services.kerod = {
+    Unit = {
+      Description = "Kero sessions (kerod)";
+      Documentation = "https://github.com/egoist/kero/blob/main/docs/remote.md";
+      X-SwitchMethod = "keep-old";
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.kero}/bin/kero daemon serve";
+      Environment = [ "KERO_SERVICE=1" ];
+      Restart = "always";
+      RestartSec = 2;
+      KillMode = "mixed";
+      TimeoutStopSec = 15;
+    };
+    Install.WantedBy = [ "default.target" ];
+  };
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;

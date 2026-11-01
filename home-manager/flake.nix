@@ -17,6 +17,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
+    kero-release = {
+      url = "file+https://api.github.com/repos/egoist/kero/releases/latest";
+      flake = false;
+    };
     tombi.url = "github:tombi-toml/tombi";
     wakatime-ls = {
       url = "github:mrnossiom/wakatime-ls";
@@ -63,6 +67,47 @@
               codex = prev.llm-agents.codex;
               opencode = prev.llm-agents.opencode;
               codex-acp = prev.llm-agents.codex-acp;
+              kero =
+                let
+                  release = builtins.fromJSON (builtins.readFile inputs.kero-release);
+                  version = prev.lib.removePrefix "v" release.tag_name;
+                  asset =
+                    prev.lib.findSingle (asset: asset.name == "kero-server-${version}-linux-amd64.tar.gz")
+                      (throw "Kero release has no Linux amd64 server archive")
+                      (throw "Kero release has multiple Linux amd64 server archives")
+                      release.assets;
+                in
+                prev.stdenvNoCC.mkDerivation {
+                  pname = "kero";
+                  inherit version;
+                  src = prev.fetchurl {
+                    url = asset.browser_download_url;
+                    sha256 = prev.lib.removePrefix "sha256:" asset.digest;
+                  };
+                  nativeBuildInputs = [ prev.autoPatchelfHook ];
+                  sourceRoot = ".";
+                  dontConfigure = true;
+                  dontBuild = true;
+                  installPhase = ''
+                    runHook preInstall
+                    install -Dm755 kero $out/lib/kero/kero
+                    install -Dm755 libghostty-vt.so $out/lib/kero/libghostty-vt.so
+                    mkdir -p $out/bin
+                    ln -s $out/lib/kero/kero $out/bin/kero
+                    runHook postInstall
+                  '';
+                  # Ghostty is loaded at runtime rather than linked into kero.
+                  postFixup = ''
+                    patchelf --add-rpath $out/lib/kero $out/lib/kero/kero
+                  '';
+                  meta = {
+                    description = "Kero terminal sessions server";
+                    homepage = "https://github.com/egoist/kero";
+                    license = prev.lib.licenses.mit;
+                    platforms = [ "x86_64-linux" ];
+                    mainProgram = "kero";
+                  };
+                };
               hunk = getPkg inputs.hunk "default";
               wakatime-ls = getPkg inputs.wakatime-ls "default";
               # tombi = getPkg inputs.tombi "default";

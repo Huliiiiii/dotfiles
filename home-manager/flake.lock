@@ -277,6 +277,18 @@
         "type": "github"
       }
     },
+    "kero-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-DeQKjOlsY9VQPw48rprayODjpmUKkVAucTryA8ltJjM=",
+        "type": "file",
+        "url": "https://api.github.com/repos/egoist/kero/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/egoist/kero/releases/latest"
+      }
+    },
     "llm-agents": {
       "inputs": {
         "bun2nix": "bun2nix",
@@ -419,6 +431,7 @@
         "helix-flake": "helix-flake",
         "home-manager": "home-manager",
         "hunk": "hunk",
+        "kero-release": "kero-release",
         "llm-agents": "llm-agents",
         "nixpkgs": "nixpkgs_2",
         "skills-catalog": "skills-catalog",
